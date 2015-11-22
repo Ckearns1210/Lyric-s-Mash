@@ -9,6 +9,8 @@
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "mongoose": "^4.2.6",
+    "handlebars": "^4.0.4",
+    "jquery": "^2.1.4",
     "morgan": "^1.6.1",
     "request": "^2.66.0"
   },

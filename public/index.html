@@ -42,10 +42,21 @@
 
     <section class="content">
 
-					<button id="search-button" class="button button--nuka button--round-s button--text-thick">Create Lyrics</button>
+        <button id="search-button" class="button button--nuka button--round-s button--text-thick">Create Lyrics</button>
 
 	</section>
 
-    <div class="show-lyrics"></div>
+    <div id="show-lyrics"></div>
+
+    <template id="show-many" type="text/x-handlebars-template">
+        {{#each lyric}}
+            <div class="media" data-id="{{this.title}}">
+                <div class="media-body">
+                    <h4 class="media-heading">{{this.snippet}}</h4>
+                    <p>media body</p>
+                </div>
+            </div>
+        {{/each}}
+    </template>
 </body>
 </html>

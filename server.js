@@ -16,6 +16,10 @@ app.listen(3000, function(req,res){
     console.log('Goodbye old friend, Till I see you Again');
 });
 
+app.get('/', function (req, res) {
+    res.send("I Work");
+});
+
 app.use('/', lyric);
 
 
