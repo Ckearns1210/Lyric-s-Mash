@@ -149,3 +149,8 @@
 button.button.button--nuka.button--round-s.button--text-thick {
     font-size: 17px;
 }
+
+button#search-button {
+    text-align: center;
+    margin: 0 auto;
+}
