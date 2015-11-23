@@ -22,12 +22,12 @@ module.exports = router;
 
 
 
-module.exports.controller = function (app) {
-
-    app.get('/lyric', function (req, res, next) {
-        Lyric.find().exec(function (err, lyrics) {
-            if(err) return next(err);
-            res.send(lyrics);
-        });
-    });
-};
+// module.exports.controller = function (app) {
+//
+//     app.get('/lyric', function (req, res, next) {
+//         Lyric.find().exec(function (err, lyrics) {
+//             if(err) return next(err);
+//             res.send(lyrics);
+//         });
+//     });
+// };
