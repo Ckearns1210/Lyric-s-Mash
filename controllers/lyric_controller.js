@@ -20,36 +20,22 @@ router.get('/lyric/:search', function(req,res){
     });
 });
 
-<<<<<<< HEAD
-
-router.get('/lyric/:searchByLyricId', function(req,res){
-  console.log(req.params.search);
-
-})
-// router.get('/lyric/:search', function(req,res){
-//     console.log("im here");
-//
-//     request("http://api.lyricsnmusic.com/songs?api_key=53f1395dbd8adff15b086199e1c500&lyrics=" + encodeURI(req.params.search), function (error, response, body) {
-//         trySendData(body, res);
-//     });
-// });
-=======
 router.get('/track/:search', function(req,res){
     console.log("im here");
 
   request("http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=" + encodeURI(req.params.search) + "&apikey=032f5b65b1a0deac1f5f44afc9d548c0", function (error, response, body) {
         trySendData(body, res);
     });
-});
->>>>>>> adb41c4dd9b7071d3e9492647b3e1032bdb6a5fa
 
-router.get('/track/:search', function(req,res){
-   console.log("im here");
-
-   request("http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id="+ encodeURI(req.params.search) +"&s_track_rating=desc&apikey=032f5b65b1a0deac1f5f44afc9d548c0", function (error, response, body) {
-       trySendData(body, res);
-   });
 });
+
+// router.get('/track/:search', function(req,res){
+//    console.log("im here");
+//
+//    request("http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id="+ encodeURI(req.params.search) +"&s_track_rating=desc&apikey=032f5b65b1a0deac1f5f44afc9d548c0", function (error, response, body) {
+//        trySendData(body, res);
+//    });
+// });
 
 module.exports = router;
 
