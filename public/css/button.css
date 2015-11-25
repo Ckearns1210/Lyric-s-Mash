@@ -1,4 +1,4 @@
-.bg-1 {
+bg-1 {
 	background: #ECEFF1;
 	color: #37474f;
 }
@@ -148,4 +148,9 @@
 
 button.button.button--nuka.button--round-s.button--text-thick {
     font-size: 17px;
+}
+
+button#search-button {
+    text-align: center;
+    margin: 0 auto;
 }

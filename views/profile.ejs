@@ -2,41 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>rylam</title>
+    <title>Lyrics Smash</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
-    <script type="text/javascript" src="./js/app.js"></script>
-    <script type="text/javascript" src="./js/classie.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="./css/form.css" />
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <link rel="stylesheet" type="text/css" href="./css/button.css" />
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/classie.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/form.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/button.css" />
 </head>
 <body>
+    <div class="container">
     <section class="content">
         <h2>Lyrics Smash</h2>
         <span class="input input--hoshi">
-            <input class="input__field input__field--hoshi" type="text" id="input-4" />
+            <input class="input__field input__field--hoshi inputter" type="text" id="input-4" />
             <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
                 <span class="input__label-content input__label-content--hoshi">First Word</span>
             </label>
         </span>
         <span class="input input--hoshi">
-            <input class="input__field input__field--hoshi" type="text" id="input-5" />
+            <input class="input__field input__field--hoshi inputter" type="text" id="input-5" />
             <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="input-5">
                 <span class="input__label-content input__label-content--hoshi">Second Word</span>
             </label>
         </span>
         <span class="input input--hoshi">
-            <input class="input__field input__field--hoshi" type="text" id="input-6" />
+            <input class="input__field input__field--hoshi inputter" type="text" id="input-6" />
             <label class="input__label input__label--hoshi input__label--hoshi-color-3" for="input-6">
                 <span  class="input__label-content input__label-content--hoshi">Third Word</span>
             </label>
         </span>
-
-
     </section>
+
 
 
 
@@ -58,5 +58,7 @@
             </div>
         {{/each}}
     </template>
+
+</div>
 </body>
 </html>
