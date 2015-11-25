@@ -5,9 +5,7 @@ var express     = require('express'),
     Movie     = require('../models/lyric.js')
 ;
 
-var trySendData = function(item,res){
-    item ? res.send(item) : res.sendStatus(404).end();
-};
+
 
 
 router.get('/lyric/:search', function(req,res){

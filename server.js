@@ -1,44 +1,46 @@
 var express     = require('express'),
-    logger      = require('morgan'),
+    morgan      = require('morgan'),
     app         = express(),
     router      = express.Router(),
     request     = require('request'),
     mongoose    = require('mongoose'),
-    bodyParser = require('body-parser'),
-    lyric       = require('./controllers/lyric_controller.js'),
-    user        = require('./controllers/user_controller.js'),
-    sessions    = require('./controllers/sessions_controller.js')
+    bodyParser  = require('body-parser'),
     passport    = require('passport'),
     flash       = require('connect-flash'),
     cookieParser= require('cookie-parser'),
     session     = require('express-session');
+    port        = process.env.PORT || 3000;
+    configDB    = require('./config/database.js')
 
-    mongoose.connect('mongodb://localhost/jjtc', function (err) {
-      if(err){
-        console.log('connection error', err);
-      } else {
-        console.log('connection successful');
-      }
-    });
+//mongoose DB
+mongoose.connect(configDB.url);
 
-app.use(logger('dev'));
+require('./config/passport')(passport);
+
+//EXPRESS SETUP
+app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser());
+
+//TEMPLATE SETUP
+app.set('view engine', 'ejs');
+app.use(express.static('public') );
+
+//PASSPORT SETUP
 app.use(session({
   secret: "thisismysecret",
-  saveUnitialized: false,
-  resave: false
 }));
 app.use(flash());
-app.use(express.static('public') );
-app.listen(3000, function(req,res){
-    console.log('Goodbye old friend, Till I see you Again');
-});
+app.use(passport.initialize());
+app.use(passport.session());
+
+//ROUTES
+require('./app/routes.js')(app, passport);
+
+//Port and Start
+app.listen(port);
+console.log('Cool runnings down through port 3000')
 
 app.get('/', function (req, res) {
     res.send("I Work");
 });
-
-app.use('/', lyric);
-app.use('/', user);
-app.use('/', sessions)
