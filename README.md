@@ -1,2 +1,0 @@
-# jjtc
-WDI Group Project
