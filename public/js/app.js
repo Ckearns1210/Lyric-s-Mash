@@ -3,6 +3,7 @@ $(function(){
 
     $("#search-button").on('click', function(e) {
         e.preventDefault();
+<<<<<<< HEAD
         var searchTerm1 = $('#input-4').val();
         $.get(('/lyric/' + searchTerm1), render);
         var searchTerm2 = $('#input-5').val();
@@ -173,6 +174,62 @@ var render2 = function (data) {
 
     });
 };
+=======
+          $.each($('.inputter'), function () {
+            var $currentItem = $(this);
+            var searchTerm = $currentItem.val();
+            $.get('/lyric/' + searchTerm, render.bind(undefined, searchTerm), 'json');
+
+        });
+    });
+
+    var render = function (searchTerm, data, xhr){
+        var _render = render.bind(searchTerm, data);
+
+        // verify that message body exists
+
+        var songList = data.message.body.track_list;
 
 
+        //shuffled songlist
+
+        var collection = shuffle(songList);
+>>>>>>> ba9ee40457f9c3728339031268f8419ac99bcc10
+
+        var recursiveIterator = (function _rci(item) {
+            $.get('/track/' + item.track.track_id, function (data) {
+                var trackBody = data.message.body.lyrics.lyrics_body;
+                var re = new RegExp ( '\\b' + searchTerm + '\\b', 'g');
+                var foundLine = trackBody.split(/\n/g).find( function(el){
+                    return el.match(re);
+                });
+                return foundLine ? successfulItems(foundLine) : _rci(collection.pop());
+            }, 'json');
+
+        })(collection.pop());
+
+    };
 });
+
+var successfulItems = function(word){
+
+    $('#show-lyrics').append($('<p>').text(word));
+};
+
+var shuffle = function(array) {
+  var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
+}

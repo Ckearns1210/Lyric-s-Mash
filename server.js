@@ -1,31 +1,46 @@
 var express     = require('express'),
-    logger      = require('morgan'),
+    morgan      = require('morgan'),
     app         = express(),
     router      = express.Router(),
     request     = require('request'),
     mongoose    = require('mongoose'),
-    bodyParser = require('body-parser'),
-    fs = require('fs'),
-    lyric       = require('./controllers/lyric_controller.js')
+    bodyParser  = require('body-parser'),
+    passport    = require('passport'),
+    flash       = require('connect-flash'),
+    cookieParser= require('cookie-parser'),
+    session     = require('express-session');
+    port        = process.env.PORT || 3000;
+    configDB    = require('./config/database.js')
 
-;
+//mongoose DB
+mongoose.connect(configDB.url);
 
-app.use(logger('dev'));
+require('./config/passport')(passport);
+
+//EXPRESS SETUP
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(bodyParser());
+
+//TEMPLATE SETUP
+app.set('view engine', 'ejs');
 app.use(express.static('public') );
-app.listen(3000, function(req,res){
-    console.log('Goodbye old friend, Till I see you Again');
-});
+
+//PASSPORT SETUP
+app.use(session({
+  secret: "thisismysecret",
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+//ROUTES
+require('./app/routes.js')(app, passport);
+
+//Port and Start
+app.listen(port);
+console.log('Cool runnings down through port 3000')
 
 app.get('/', function (req, res) {
     res.send("I Work");
-});
-
-app.use('/', lyric);
-
-
-fs.readdirSync('./controllers').forEach(function (file){
-    if(file.substr(-3) == '.js'){
-        route = require('./controllers/' + file);
-        route.controller(app);
-    }
 });

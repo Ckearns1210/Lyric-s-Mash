@@ -5,9 +5,7 @@ var express     = require('express'),
     Movie     = require('../models/lyric.js')
 ;
 
-var trySendData = function(item,res){
-    item ? res.send(item) : res.sendStatus(404).end();
-};
+
 
 
 router.get('/lyric/:search', function(req,res){
@@ -41,12 +39,12 @@ module.exports = router;
 
 
 
-module.exports.controller = function (app) {
-
-    app.get('/lyric', function (req, res, next) {
-        Lyric.find().exec(function (err, lyrics) {
-            if(err) return next(err);
-            res.send(lyrics);
-        });
-    });
-};
+// module.exports.controller = function (app) {
+//
+//     app.get('/lyric', function (req, res, next) {
+//         Lyric.find().exec(function (err, lyrics) {
+//             if(err) return next(err);
+//             res.send(lyrics);
+//         });
+//     });
+// };
