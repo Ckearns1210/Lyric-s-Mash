@@ -166,6 +166,7 @@ var render2 = function (data) {
                 }
             }
 
+
         console.log(trackBody);
         $('#show-lyrics').append($('<p>').text(findLine[theIndex]));
         }
