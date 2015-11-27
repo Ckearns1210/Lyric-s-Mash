@@ -3,8 +3,7 @@ $(function(){
 
     $("#search-button").on('click', function(e) {
         e.preventDefault();
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         var searchTerm1 = $('#input-4').val();
         $.get(('/lyric/' + searchTerm1), render);
         var searchTerm2 = $('#input-5').val();
@@ -53,14 +52,13 @@ var render = function (data) {
         $('#show-lyrics').append($('<p>').text(findLine[theIndex]));
         }
 
-=======
+
           $.each($('.inputter'), function () {
             var $currentItem = $(this);
             var searchTerm = $currentItem.val();
             $.get('/lyric/' + searchTerm, render.bind(undefined, searchTerm), 'json');
 
         });
->>>>>>> ba9ee40457f9c3728339031268f8419ac99bcc10
     });
 };
 
@@ -126,7 +124,6 @@ var render1 = function (data) {
 
 
 
-<<<<<<< HEAD
 
 
         $('#show-lyrics').append($('<p>').text(findLine[theIndex]));
@@ -141,7 +138,6 @@ var render1 = function (data) {
 //     console.log(lyrics);
 //
 // }
-//=======
 
 var render2 = function (data) {
     var parser = JSON.parse(data);
@@ -149,7 +145,6 @@ var render2 = function (data) {
     // console.log(songList[0]);
     var random = Math.floor(Math.random() * (songList.length + 1));
     // var $lyric1 = $('<p>').text( JSON.stringify(songList[random]));
-//>>>>>>> adb41c4dd9b7071d3e9492647b3e1032bdb6a5fa
 
     var randomTrack = songList[random].track;
 
@@ -184,7 +179,6 @@ var render2 = function (data) {
 
     });
 };
-=======
           $.each($('.inputter'), function () {
             var $currentItem = $(this);
             var searchTerm = $currentItem.val();
@@ -199,7 +193,6 @@ var render2 = function (data) {
         // verify that message body exists
 
         var songList = data.message.body.track_list;
-=======
     var render = function (searchTerm, data, xhr){
         var _render = render.bind(searchTerm, data);
 
@@ -209,15 +202,12 @@ var render2 = function (data) {
 
 
         //shuffled songlist
->>>>>>> ba9ee40457f9c3728339031268f8419ac99bcc10
 
         var collection = shuffle(songList);
 
-<<<<<<< HEAD
         //shuffled songlist
 
         var collection = shuffle(songList);
->>>>>>> ba9ee40457f9c3728339031268f8419ac99bcc10
 
         var recursiveIterator = (function _rci(item) {
             $.get('/track/' + item.track.track_id, function (data) {
@@ -229,7 +219,6 @@ var render2 = function (data) {
                 return foundLine ? successfulItems(foundLine) : _rci(collection.pop());
             }, 'json');
 
-=======
         var recursiveIterator = (function _rci(item) {
             $.get('/track/' + item.track.track_id, function (data) {
                 var trackBody = data.message.body.lyrics.lyrics_body;
@@ -240,7 +229,6 @@ var render2 = function (data) {
                 return foundLine ? successfulItems(foundLine) : _rci(collection.pop());
             }, 'json');
 
->>>>>>> ba9ee40457f9c3728339031268f8419ac99bcc10
         })(collection.pop());
 
     };
