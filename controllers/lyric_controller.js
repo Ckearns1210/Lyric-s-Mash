@@ -27,6 +27,7 @@ router.get('/track/:search', function(req,res){
 
 });
 
+<<<<<<< HEAD
 // router.get('/track/:search', function(req,res){
 //    console.log("im here");
 //
@@ -39,6 +40,8 @@ module.exports = router;
 
 
 
+=======
+>>>>>>> ba9ee40457f9c3728339031268f8419ac99bcc10
 // module.exports.controller = function (app) {
 //
 //     app.get('/lyric', function (req, res, next) {

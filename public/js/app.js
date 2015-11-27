@@ -4,6 +4,7 @@ $(function(){
     $("#search-button").on('click', function(e) {
         e.preventDefault();
 <<<<<<< HEAD
+<<<<<<< HEAD
         var searchTerm1 = $('#input-4').val();
         $.get(('/lyric/' + searchTerm1), render);
         var searchTerm2 = $('#input-5').val();
@@ -52,6 +53,14 @@ var render = function (data) {
         $('#show-lyrics').append($('<p>').text(findLine[theIndex]));
         }
 
+=======
+          $.each($('.inputter'), function () {
+            var $currentItem = $(this);
+            var searchTerm = $currentItem.val();
+            $.get('/lyric/' + searchTerm, render.bind(undefined, searchTerm), 'json');
+
+        });
+>>>>>>> ba9ee40457f9c3728339031268f8419ac99bcc10
     });
 };
 
@@ -117,6 +126,7 @@ var render1 = function (data) {
 
 
 
+<<<<<<< HEAD
 
 
         $('#show-lyrics').append($('<p>').text(findLine[theIndex]));
@@ -189,8 +199,21 @@ var render2 = function (data) {
         // verify that message body exists
 
         var songList = data.message.body.track_list;
+=======
+    var render = function (searchTerm, data, xhr){
+        var _render = render.bind(searchTerm, data);
+
+        // verify that message body exists
+
+        var songList = data.message.body.track_list;
 
 
+        //shuffled songlist
+>>>>>>> ba9ee40457f9c3728339031268f8419ac99bcc10
+
+        var collection = shuffle(songList);
+
+<<<<<<< HEAD
         //shuffled songlist
 
         var collection = shuffle(songList);
@@ -206,6 +229,18 @@ var render2 = function (data) {
                 return foundLine ? successfulItems(foundLine) : _rci(collection.pop());
             }, 'json');
 
+=======
+        var recursiveIterator = (function _rci(item) {
+            $.get('/track/' + item.track.track_id, function (data) {
+                var trackBody = data.message.body.lyrics.lyrics_body;
+                var re = new RegExp ( '\\b' + searchTerm + '\\b', 'g');
+                var foundLine = trackBody.split(/\n/g).find( function(el){
+                    return el.match(re);
+                });
+                return foundLine ? successfulItems(foundLine) : _rci(collection.pop());
+            }, 'json');
+
+>>>>>>> ba9ee40457f9c3728339031268f8419ac99bcc10
         })(collection.pop());
 
     };
