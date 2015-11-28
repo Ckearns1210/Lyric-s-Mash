@@ -1,6 +1,6 @@
 var request     = require('request');
     bodyParser  = require('body-parser'),
-    request     = require('request')
+
 
 module.exports = function(app, passport) {
 
@@ -20,9 +20,9 @@ app.get('/track/:search', function(req,res){
     });
 });
 
-  app.get('/', function(req, res) {
-    res.render('index.ejs');
-  });
+app.get('/', function(req, res) {
+res.render('index.ejs');
+});
 
 app.get('/login', function (req, res) {
   res.render('login.ejs', {message: req.flash('loginMessage')});
@@ -43,7 +43,6 @@ app.get('/profile', isLoggedIn, function(req, res) {
     res.redirect('/');
   });
 
-
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/profile',
     failureRedirect : '/signup',
@@ -55,6 +54,19 @@ app.get('/profile', isLoggedIn, function(req, res) {
     failureRedirect: '/login',
     failureFlash   : true
   }));
+
+  app.post('/', passport.authenticate('local-signup', {
+    successRedirect : '/profile',
+    failureRedirect : '/signup',
+    failureFlash    : true
+  }));
+
+  app.post('/', passport.authenticate('local-login', {
+    successRedirect : '/profile',
+    failureRedirect: '/login',
+    failureFlash   : true
+  }));
+
 
 };
 

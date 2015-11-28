@@ -24,7 +24,7 @@ $(function(){
         console.log(collection);
 
         var recursiveIterator = (function _rci(item) {
-          if (item != = undefined ) {
+          if (item !== undefined ) {
             $.get('/track/' + item.track.track_id, function (data) {
                 var trackBody = data.message.body.lyrics.lyrics_body;
                 var re = new RegExp ( '\\b' + searchTerm + '\\b', 'gi');
