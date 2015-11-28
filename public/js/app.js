@@ -17,15 +17,14 @@ $(function(){
         // verify that message body exists
 
         var songList = data.message.body.track_list;
-        console.log(songList)
-
+        console.log(songList);
 
         //shuffled songlist
         var collection = shuffle(songList);
         console.log(collection);
 
         var recursiveIterator = (function _rci(item) {
-          if (item != undefined ) {
+          if (item != = undefined ) {
             $.get('/track/' + item.track.track_id, function (data) {
                 var trackBody = data.message.body.lyrics.lyrics_body;
                 var re = new RegExp ( '\\b' + searchTerm + '\\b', 'gi');
@@ -35,7 +34,7 @@ $(function(){
                 if (foundLine === "******* This Lyrics is NOT for Commercial use *******") {
                   foundLine = false;
                 }
-                return foundLine ? successfulItems(foundLine) : _rci(collection.pop());
+                return foundLine ? successfulItems(foundLine, item) : _rci(collection.pop());
             }, 'json');
 
         }
@@ -47,7 +46,8 @@ $(function(){
     };
 });
 
-var successfulItems = function(word){
+var successfulItems = function(word, item){
+    console.log(item);
 
     $('#show-lyrics').append($('<p>').text(word));
     $("#mash-button").click(function() {
@@ -68,8 +68,8 @@ var successfulItems = function(word){
 
          window.speechSynthesis.speak(msg);
 
-
        });
+       d3Visual(item);
 };
 
 
@@ -89,4 +89,4 @@ var shuffle = function(array) {
   }
 
   return array;
-}
+};
