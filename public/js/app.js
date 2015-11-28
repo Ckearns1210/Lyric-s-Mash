@@ -26,7 +26,7 @@ $(function(){
         var recursiveIterator = (function _rci(item) {
             $.get('/track/' + item.track.track_id, function (data) {
                 var trackBody = data.message.body.lyrics.lyrics_body;
-                console.log(data);
+                
 
                 var re = new RegExp ( '\\b' + searchTerm + '\\b', 'g');
                 var foundLine = trackBody.split(/\n/g).find( function(el){
