@@ -1,0 +1,36 @@
+{
+  "name": "Matter",
+  "version": "0.8.0",
+  "license": "MIT",
+  "homepage": "http://brm.io/matter-js/",
+  "author": "Liam Brummitt <liam@brm.io> (http://brm.io/)",
+  "description": "a 2D rigid body physics engine for the web",
+  "main": "build/matter-0.8.0.min.js",
+  "repository":{ 
+    "type" : "git", 
+    "url" : "https://github.com/liabru/matter-js.git"
+  },
+  "keywords": [
+    "javascript",
+    "canvas",
+    "html5",
+    "physics",
+    "physics engine",
+    "game engine",
+    "rigid body physics"
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-connect": "~0.6.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-yuidoc": "~0.5.1"
+  },
+  "scripts": {
+    "dev": "npm install && grunt dev",
+    "test": "grunt test"
+  }
+}

@@ -28,15 +28,12 @@ $(function(){
           if (item != undefined ) {
             $.get('/track/' + item.track.track_id, function (data) {
                 var trackBody = data.message.body.lyrics.lyrics_body;
-                console.log(trackBody);
                 var re = new RegExp ( '\\b' + searchTerm + '\\b', 'gi');
-                console.log(searchTerm)
                 var foundLine = trackBody.split(/\n/g).find( function(el){
                     return el.match(re);
                 });
                 if (foundLine === "******* This Lyrics is NOT for Commercial use *******") {
                   foundLine = false;
-                  console.log('**************CRISIS AVERTED*****************')
                 }
                 return foundLine ? successfulItems(foundLine) : _rci(collection.pop());
             }, 'json');
