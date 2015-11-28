@@ -1,0 +1,37 @@
+{
+  "name": "Matter",
+  "version": "0.8.0-alpha",
+  "homepage": "https://github.com/liabru/matter-js",
+  "authors": [
+    "Liam Brummitt <liam@brm.io> (http://brm.io/)"
+  ],
+  "description": "a 2D rigid body physics engine for the web",
+  "main": "build/matter-0.8.0.min.js",
+  "keywords": [
+    "javascript",
+    "canvas",
+    "html5",
+    "physics",
+    "physics engine",
+    "game engine",
+    "rigid body physics"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.8.0-alpha",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.8.0-alpha",
+    "commit": "b6ed9f04bc3877cd59c9ef6e03d42a51f8b8f6df"
+  },
+  "_source": "git://github.com/liabru/matter-js.git",
+  "_target": "~0.8.0-alpha",
+  "_originalSource": "matter-js",
+  "_direct": true
+}
