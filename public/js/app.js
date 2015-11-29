@@ -66,7 +66,8 @@ $(function(){
       }})(collection.pop());
 
     };
-});
+  };
+emon});
 
 var successfulItems = function(word, item){
     var album_cover = item.track.album_coverart_100x100;
