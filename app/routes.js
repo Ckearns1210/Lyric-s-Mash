@@ -15,14 +15,22 @@ app.get('/lyric/:search', function(req,res){
 app.get('/track/:search', function(req,res){
     console.log("im here");
 
-    request("http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=" + encodeURI(req.params.search) + "&apikey=5ee8f20d45e92ada39d80eb87c848687", function (error, response, body) {
+    request("http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=" + encodeURI(req.params.search) + "&apikey=032f5b65b1a0deac1f5f44afc9d548c0", function (error, response, body) {
         trySendData(body, res);
     });
 });
 
+app.get('/spotify/:search', function(req, res) {
+  request("https://api.spotify.com/v1/tracks/" + encodeURI(req.params.search), function (error, response, body) {
+    trySendData(body, res);
+  })
+})
+
   app.get('/', function(req, res) {
-    res.render('index.ejs');
-  });
+    res.render('index.ejs', {
+      user: req.user
+    });
+  })
 
 app.get('/login', function (req, res) {
   res.render('login.ejs', {message: req.flash('loginMessage')});
@@ -63,9 +71,18 @@ app.get('/profile', isLoggedIn, function(req, res) {
 var isLoggedIn = function (req, res, next) {
   if(req.isAuthenticated())
   return next();
-
+else {
   res.redirect('/');
+  }
 };
+
+// var isLoggedInSendUser = function(req, req, next) {
+//   if (req.isAuthenticated())
+//   return next();
+// else {
+//   res.render('index.js');
+//   }
+// };
 
 var trySendData = function(item,res){
     item ? res.send(item) : res.sendStatus(404).end();
