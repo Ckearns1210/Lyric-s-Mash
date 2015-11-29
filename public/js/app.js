@@ -22,16 +22,12 @@ $(function(){
         // verify that message body exists
 
         var songList = data.message.body.track_list;
-<<<<<<< HEAD
         //console.log(songList)
-=======
         console.log(songList);
->>>>>>> bc194a80918103853b2fbffa60a9d88ae9df5b4d
 
 
         //shuffled songlist
         var collection = shuffle(songList);
-<<<<<<< HEAD
         // console.log(collection);
 
 
@@ -45,7 +41,6 @@ $(function(){
 
                 var re = new RegExp ( '\\b' + searchTerm + '\\b', 'gi');
 
-=======
         console.log(collection);
 
         var recursiveIterator = (function _rci(item) {
@@ -53,19 +48,15 @@ $(function(){
             $.get('/track/' + item.track.track_id, function (data) {
                 var trackBody = data.message.body.lyrics.lyrics_body;
                 var re = new RegExp ( '\\b' + searchTerm + '\\b', 'gi');
->>>>>>> bc194a80918103853b2fbffa60a9d88ae9df5b4d
                 var foundLine = trackBody.split(/\n/g).find( function(el){
                     return el.match(re);
                 });
                 if (foundLine === "******* This Lyrics is NOT for Commercial use *******") {
                   foundLine = false;
                 }
-<<<<<<< HEAD
 
                 return foundLine ? successfulItems(foundLine, item) : _rci(collection.pop());
-=======
                 return foundLine ? successfulItems(foundLine, item, searchTerm) : _rci(collection.pop());
->>>>>>> bc194a80918103853b2fbffa60a9d88ae9df5b4d
             }, 'json');
 
         }
@@ -77,7 +68,6 @@ $(function(){
     };
 });
 
-<<<<<<< HEAD
 var successfulItems = function(word, item){
     var album_cover = item.track.album_coverart_100x100;
     var artist_name = item.track.artist_name;
@@ -118,8 +108,7 @@ var successfulItems = function(word, item){
 
 };
 
-=======
-
+=
 var successfulItems = function(word, item, searchTerm){
 
   var spotifyID = item.track.track_spotify_id;
@@ -211,7 +200,6 @@ $('.spotify-widget-container').empty();
 
 
 
->>>>>>> bc194a80918103853b2fbffa60a9d88ae9df5b4d
 
 var shuffle = function(array) {
   var m = array.length, t, i;
