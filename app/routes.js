@@ -1,6 +1,6 @@
 var request     = require('request');
-    bodyParser  = require('body-parser'),
-    request     = require('request')
+    bodyParser  = require('body-parser');
+
 
 module.exports = function(app, passport) {
 
@@ -21,48 +21,65 @@ app.get('/track/:search', function(req,res){
 });
 
 app.get('/spotify/:search', function(req, res) {
-  request("https://api.spotify.com/v1/tracks/" + encodeURI(req.params.search), function (error, response, body) {
-    trySendData(body, res);
-  })
-})
-
-  app.get('/', function(req, res) {
-    res.render('index.ejs', {
-      user: req.user
+    request("https://api.spotify.com/v1/tracks/" + encodeURI(req.params.search), function (error, response, body) {
+        trySendData(body, res);
     });
-  })
+});
+
+app.get('/', function(req, res) {
+    res.render('index.ejs');
+});
 
 app.get('/login', function (req, res) {
-  res.render('login.ejs', {message: req.flash('loginMessage')});
+    res.render('login.ejs', {message: req.flash('loginMessage')});
 });
 
 app.get('/signup', function(req, res) {
-  res.render('signup.ejs', {message: req.flash('signupMessage')});
+    res.render('signup.ejs', {message: req.flash('signupMessage')});
 });
 
-app.get('/profile', isLoggedIn, function(req, res) {
+// app.get('/profile', isLoggedIn, function(req, res) {
+//     res.render('profile.ejs', {
+//       user: req.user
+//     });
+//   });
+// ^^ authentcation previos ^^
+
+app.get('/profile', function(req, res) {
     res.render('profile.ejs', {
       user: req.user
     });
   });
 
-  app.get('/logout', function(req, res) {
+app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
-  });
+});
 
-
-  app.post('/signup', passport.authenticate('local-signup', {
+app.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/profile',
     failureRedirect : '/signup',
     failureFlash    : true
-  }));
+}));
 
-  app.post('/login', passport.authenticate('local-login', {
+app.post('/login', passport.authenticate('local-login', {
     successRedirect : '/profile',
     failureRedirect: '/login',
     failureFlash   : true
-  }));
+}));
+
+app.post('/', passport.authenticate('local-signup', {
+    successRedirect : '/profile',
+    failureRedirect : '/signup',
+    failureFlash    : true
+}));
+
+app.post('/', passport.authenticate('local-login', {
+    successRedirect : '/profile',
+    failureRedirect: '/login',
+    failureFlash   : true
+}));
+
 
 };
 
@@ -71,18 +88,9 @@ app.get('/profile', isLoggedIn, function(req, res) {
 var isLoggedIn = function (req, res, next) {
   if(req.isAuthenticated())
   return next();
-else {
-  res.redirect('/');
-  }
-};
 
-// var isLoggedInSendUser = function(req, req, next) {
-//   if (req.isAuthenticated())
-//   return next();
-// else {
-//   res.render('index.js');
-//   }
-// };
+  res.redirect('/');
+};
 
 var trySendData = function(item,res){
     item ? res.send(item) : res.sendStatus(404).end();

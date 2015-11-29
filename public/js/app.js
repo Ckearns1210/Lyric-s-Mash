@@ -3,6 +3,8 @@ $(function(){
 
     $("#search-button").on('click', function(e) {
         e.preventDefault();
+        $('#show-lyrics').empty();
+
           $.each($('.inputter'), function () {
             var $currentItem = $(this);
             var searchTerm = $currentItem.val();
@@ -13,13 +15,13 @@ $(function(){
     });
 
     var render = function (searchTerm, data, xhr){
-      console.log(data)
+      console.log(data);
         var _render = render.bind(searchTerm, data);
 
         // verify that message body exists
 
         var songList = data.message.body.track_list;
-        console.log(songList)
+        console.log(songList);
 
 
         //shuffled songlist
@@ -27,7 +29,7 @@ $(function(){
         console.log(collection);
 
         var recursiveIterator = (function _rci(item) {
-          if (item != undefined ) {
+          if (item !== undefined ) {
             $.get('/track/' + item.track.track_id, function (data) {
                 var trackBody = data.message.body.lyrics.lyrics_body;
                 var re = new RegExp ( '\\b' + searchTerm + '\\b', 'gi');
@@ -54,7 +56,7 @@ var successfulItems = function(word, item, searchTerm){
 
   var spotifyID = item.track.track_spotify_id;
 
-  var $newSpan = $('<span class = lyrics-span>')
+  var $newSpan = $('<span class = lyrics-span>');
   var $newP = $('<p>').text(word);
   $newSpan.append($newP);
   $('#show-lyrics').append($newSpan);
@@ -91,41 +93,33 @@ var successfulItems = function(word, item, searchTerm){
 
 var spotifyCall = function(spotifyID, searchTerm) {
   $.get('/spotify/' + spotifyID, function(data) {
-    if (data != undefined) {
     renderSpotify(data, spotifyID);
-  }
-    else {
-        $.get('/spotify/' + spotifyID, function(data) {
-          render(spotify(data, spotifyID));
-        })
-    }
   }, 'json');
-}
+};
 
 var renderSpotify = function(data, spotifyID) {
-  console.log(data)
-  var artists = data.artists
+  console.log(data);
+  var artists = data.artists;
   var artistsNames = [];
   artists.forEach(function(el) {
-    artistsNames.push(el.name)
-  })
+    artistsNames.push(el.name);
+});
   var songName = data.name;
   var imageURL = data.album.images[2].url;
-  var spotifyLink = data.external_urls.spotify
+  var spotifyLink = data.external_urls.spotify;
 $(".lyrics-span-artist-info" + "." + spotifyID).text("Artists: " + artistsNames.toString() + " Song Name: " + songName);
-//create a a href in a span and append to lyrics paragragh
-var $img = $('<img />',{
-    class: 'artist-image',
-     src: imageURL,
-   })
-    .appendTo($('.lyrics-span-clearfix' + "." + spotifyID));
-    $('.lyrics-span-clearfix' + "." + spotifyID).addClass('has-image');
+  //create a a href in a span and append to lyrics paragragh
+        var $img = $('<img />',{
+                    class: 'artist-image',
+                     src: imageURL,
+                   })
+                    .appendTo($('.lyrics-span-clearfix' + "." + spotifyID));
+                    $('.lyrics-span-clearfix' + "." + spotifyID).addClass('has-image');
 
   var $newLink = $("<a />", {
     class : "spotify-link",
     href : spotifyLink,
-    text: "Check this song out on Spotify!"
-
+    text: "spotify link"
 }).appendTo($('.lyrics-span-artist-info' + "." + spotifyID));
 };
 
@@ -146,4 +140,4 @@ var shuffle = function(array) {
   }
 
   return array;
-}
+};

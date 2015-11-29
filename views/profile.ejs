@@ -5,79 +5,100 @@
     <title>Lyrics Smash</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/classie.js"></script>
+    <script type="text/javascript" src="./js/page_animation.js"></script>
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/form.css" />
+    <link rel="stylesheet" type="text/css" href="css/form_songs.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/button.css" />
+    <link rel="stylesheet" type="text/css" href="css/linkstyles_page.css" />
+
 </head>
 <body>
-    <div class="container">
+
+    <section id="holder">
+        <div class="container-main" >
+            <div class="grid">
+            	<div class="grid__item color-8">
+                    <div class = "logo"><a class="link link--kukuri" href="/" data-letters="lyric's'mash">lyric's'mash</a></div>
+                        <div class="page-links">
+                            <ul><li><a href="/profile">wordit</a></li><li><a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a></li></ul>
+                        </div>
+
     <section class="content">
-        <h2>Lyrics Smash</h2>
-        <a href="/logout" class="btn btn-default"><span class="fa fa-user"></span>Logout</a>
-        <span class="input input--hoshi">
-            <input class="input__field input__field--hoshi inputter" type="text" id="input-4" />
-            <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
-                <span class="input__label-content input__label-content--hoshi">First Word</span>
-            </label>
+
+        <!-- <div class="word-data"> -->
+        <span class="input input--nao">
+                <input class="input__field input__field--nao inputter" type="text" id="input-1" />
+                <label class="input__label input__label--nao" for="input-1">
+                    <span class="input__label-content input__label-content--nao">First Word</span>
+                </label>
+                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                    <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                </svg>
         </span>
-        <span class="input input--hoshi">
-            <input class="input__field input__field--hoshi inputter" type="text" id="input-5" />
-            <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="input-5">
-                <span class="input__label-content input__label-content--hoshi">Second Word</span>
-            </label>
+        <!-- </div>
+        <div class="word-data"> -->
+        <span class="input input--nao">
+                <input class="input__field input__field--nao inputter" type="text" id="input-1" />
+                <label class="input__label input__label--nao" for="input-1">
+                    <span class="input__label-content input__label-content--nao">second Word</span>
+                </label>
+                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                    <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                </svg>
         </span>
-        <span class="input input--hoshi">
-            <input class="input__field input__field--hoshi inputter" type="text" id="input-6" />
-            <label class="input__label input__label--hoshi input__label--hoshi-color-3" for="input-6">
-                <span  class="input__label-content input__label-content--hoshi">Third Word</span>
-            </label>
+        <!-- </div>
+        <div class="word-data"> -->
+        <span class="input input--nao">
+                <input class="input__field input__field--nao inputter" type="text" id="input-1" />
+                <label class="input__label input__label--nao" for="input-1">
+                    <span class="input__label-content input__label-content--nao">third Word</span>
+                </label>
+                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                    <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                </svg>
         </span>
-        <span class="input input--hoshi">
-            <input class="input__field input__field--hoshi inputter" type="text" id="input-6" />
-            <label class="input__label input__label--hoshi input__label--hoshi-color-3" for="input-6">
-                <span  class="input__label-content input__label-content--hoshi">Fourth Word</span>
-            </label>
+        <!-- </div>
+        <div class="word-data"> -->
+        <span class="input input--nao">
+                <input class="input__field input__field--nao inputter" type="text" id="input-1" />
+                <label class="input__label input__label--nao" for="input-1">
+                    <span class="input__label-content input__label-content--nao">fourth Word</span>
+                </label>
+                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                    <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                </svg>
         </span>
-        <span class="input input--hoshi">
-            <input class="input__field input__field--hoshi inputter" type="text" id="input-6" />
-            <label class="input__label input__label--hoshi input__label--hoshi-color-3" for="input-6">
-                <span  class="input__label-content input__label-content--hoshi">Fifth Word</span>
-            </label>
+        <!-- </div>
+        <div class="word-data"> -->
+        <span class="input input--nao">
+                <input class="input__field input__field--nao inputter" type="text" id="input-1" />
+                <label class="input__label input__label--nao" for="input-1">
+                    <span class="input__label-content input__label-content--nao">fifth Word</span>
+                </label>
+                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                    <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                </svg>
         </span>
+        <!-- </div> -->
+
+            <button id="search-button" class="button button--nuka button--round-s button--text-thick">Create Lyrics</button>
+
+
     </section>
 
 
-
-
-    <section class="content">
-
-        <button id="search-button" class="button button--nuka button--round-s button--text-thick">Create Lyrics</button>
-
-	</section>
-
-    <div id="show-lyrics"></div>
-
-    <template id="show-many" type="text/x-handlebars-template">
-        {{#each lyric}}
-            <div class="media" data-id="{{this.title}}">
-                <div class="media-body">
-                    <h4 class="media-heading">{{this.snippet}}</h4>
-                    <p>media body</p>
+    <div id="show-lyrics">
+    <button id="mash-button" class="button button--nuka button--round-s button--text-thick" style="display:none">Create Mash</button>
+    </div>
                 </div>
             </div>
-        {{/each}}
-    </template>
+        </div>
+    </section>
 
-    <section class="mash">
+    <script src="js/formscript.js"></script>
+    <script src="js/classie.js"></script>
 
-  <button id="mash-button" class="button button--nuka button--round-s button--text-thick">Create Mash</button>
-
-</section>
-
-</div>
 </body>
 </html>
