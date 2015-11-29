@@ -21,6 +21,7 @@
     "passport-facebook": "^2.0.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.3",
+    "play-audio": "^0.1.0",
     "request": "^2.66.0"
   },
   "scripts": {

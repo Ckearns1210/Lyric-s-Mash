@@ -73,6 +73,9 @@ var successfulItems = function(word, item, searchTerm){
 
     $("#mash-button").click(function() {
 
+      var audio = new Audio('hotline_bling.mp3');
+      audio.play();
+
          var msg = new SpeechSynthesisUtterance();
          var voices = window.speechSynthesis.getVoices();
          msg.voice = voices[3]; // Note: some voices don't support altering params
@@ -88,7 +91,7 @@ var successfulItems = function(word, item, searchTerm){
          };
 
          window.speechSynthesis.speak(msg);
-       });
+        });
     spotifyCall(spotifyID, searchTerm);
 };
 
@@ -110,12 +113,12 @@ var renderSpotify = function(data, spotifyID) {
   var spotifyLink = data.external_urls.spotify;
 $(".lyrics-span-artist-info" + "." + spotifyID).text("Artists: " + artistsNames.toString() + " Song Name: " + songName);
   //create a a href in a span and append to lyrics paragragh
-        var $img = $('<img />',{
-                    class: 'artist-image',
-                     src: imageURL,
-                   })
-                    .appendTo($('.lyrics-span-clearfix' + "." + spotifyID));
-                    $('.lyrics-span-clearfix' + "." + spotifyID).addClass('has-image');
+var $img = $('<img />',{
+            class: 'artist-image',
+             src: imageURL,
+           })
+            .appendTo($('.lyrics-span-clearfix' + "." + spotifyID));
+            $('.lyrics-span-clearfix' + "." + spotifyID).addClass('has-image');
 
   var $newLink = $("<a />", {
     class : "spotify-link",
