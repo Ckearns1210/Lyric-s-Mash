@@ -9,7 +9,7 @@ bg-1 {
 	max-width: 250px;
 	display: block;
 	margin: 1em;
-	padding: 1em 2em;
+	padding: 6px 0px;
 	border: none;
 	background: none;
 	color: inherit;
@@ -95,7 +95,7 @@ bg-1 {
 	content: '';
 	position: absolute;
 	border-radius: inherit;
-	background: #7986cb;
+	background: #fff;
 	z-index: -1;
 }
 .button--nuka::before {
@@ -153,4 +153,59 @@ button.button.button--nuka.button--round-s.button--text-thick {
 button#search-button {
     text-align: center;
     margin: 0 auto;
+	margin-top: 20px;
+	float: left;
+}
+
+
+/* Nao */
+
+
+.input__field--nao {
+	padding: 1.5em 0em 0.25em;
+	width: 100%;
+	background: transparent;
+	color: #fff;
+	font-size: 1.em;
+}
+
+.input__label--nao {
+	position: absolute;
+	top: 0.95em;
+	font-size: 0.85em;
+	left: 0;
+	display: block;
+	width: 100%;
+	text-align: left;
+	padding: 0em;
+	pointer-events: none;
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+	-webkit-transition: -webkit-transform 0.2s 0.15s, color 1s;
+	transition: transform 0.2s 0.15s, color 1s;
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+}
+
+.graphic--nao {
+	stroke: #92989e;
+	pointer-events: none;
+	-webkit-transition: -webkit-transform 0.7s, stroke 0.7s;
+	transition: transform 0.7s, stroke 0.7s;
+	-webkit-transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
+	transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
+}
+
+.input__field--nao:focus + .input__label--nao,
+.input--filled .input__label--nao {
+	color: #333;
+	-webkit-transform: translate3d(0, -1.25em, 0) scale3d(0.75, 0.75, 1);
+	transform: translate3d(0, -1.25em, 0) scale3d(0.75, 0.75, 1);
+}
+
+.input__field--nao:focus ~ .graphic--nao,
+.input--filled .graphic--nao {
+	stroke: #333;
+	-webkit-transform: translate3d(-66.6%, 0, 0);
+	transform: translate3d(-66.6%, 0, 0);
 }
