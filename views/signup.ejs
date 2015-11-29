@@ -2,16 +2,62 @@
 <html>
 <head>
     <title>Lyrics Mashup</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/form.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/button.css" />
 </head>
 <body>
+    <div class = 'nav'>
+        <logo><a href="/" ><h1>lyric's'mash</h1> </a></logo>
+        <div class="page-links">
+            <ul>
+                <li><a href="/profile">wordit</a></li>
+                <li><a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Login</a></li>
+            </ul></div>
+    </div>
+
 <div class="container">
 
-<div class="col-sm-6 col-sm-offset-3">
+    <div class="user-form">
+
+        <h1><span class="sign-in"></span> Login</h1>
+
+        <!-- show any messages that come back with authentication -->
+        <% if (message.length > 0) { %>
+            <div class="alert alert-danger"><%= message %></div>
+        <% } %>
+
+        <!-- LOGIN FORM -->
+        <form action="/login" method="post">
+            <span class="input input--nao">
+                    <input class="input__field input__field--nao" type="text" id="input-1" name="email"/>
+                    <label class="input__label input__label--nao" for="input-1">
+                        <span class="input__label-content input__label-content--nao">email</span>
+                    </label>
+                    <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                    </svg>
+            </span>
+
+            <span class="input input--nao">
+                    <input class="input__field input__field--nao" type="password" id="input-1" name="password"/>
+                    <label class="input__label input__label--nao" for="input-1">
+                        <span class="input__label-content input__label-content--nao">password</span>
+                    </label>
+                    <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                    </svg>
+            </span>
+
+            <button type="submit" class="btn btn-danger btn-lg">Login</button>
+        </form>
+
+
+
+
+    </div>
+<div class="user-form">
 
     <h1><span class="sign-in"></span> Signup</h1>
 
@@ -22,25 +68,71 @@
 
     <!-- LOGIN FORM -->
     <form action="/signup" method="post">
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="email">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
-        </div>
+        <span class="input input--nao">
+                <input class="input__field input__field--nao" type="text" id="input-1" name="email"/>
+                <label class="input__label input__label--nao" for="input-1">
+                    <span class="input__label-content input__label-content--nao">email</span>
+                </label>
+                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                    <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                </svg>
+        </span>
+
+        <span class="input input--nao">
+                <input class="input__field input__field--nao" type="password" id="password" name="password" />
+                <label class="input__label input__label--nao" for="input-1">
+                    <span class="input__label-content input__label-content--nao">password</span>
+                </label>
+                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                    <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+                </svg>
+        </span>
 
         <button type="submit" class="btn btn-danger btn-lg">Signup</button>
     </form>
 
-    <hr>
-
-    <p>Already have an account? <a href="/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
 
 </div>
 
 </div>
+
+<script src="js/classie.js"></script>
+<script>
+    (function() {
+        // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+        if (!String.prototype.trim) {
+            (function() {
+                // Make sure we trim BOM and NBSP
+                var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                String.prototype.trim = function() {
+                    return this.replace(rtrim, '');
+                };
+            })();
+        }
+
+        [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+            // in case the input is already filled..
+            if( inputEl.value.trim() !== '' ) {
+                classie.add( inputEl.parentNode, 'input--filled' );
+            }
+
+            // events:
+            inputEl.addEventListener( 'focus', onInputFocus );
+            inputEl.addEventListener( 'blur', onInputBlur );
+        } );
+
+        function onInputFocus( ev ) {
+            classie.add( ev.target.parentNode, 'input--filled' );
+        }
+
+        function onInputBlur( ev ) {
+            if( ev.target.value.trim() === '' ) {
+                classie.remove( ev.target.parentNode, 'input--filled' );
+            }
+        }
+    })();
+
+
+</script>
 </body>
 </html>

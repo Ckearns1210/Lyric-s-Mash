@@ -15,158 +15,31 @@
     <link rel="stylesheet" type="text/css" href="./css/form.css" />
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
     <link rel="stylesheet" type="text/css" href="./css/button.css" />
-    <link rel="stylesheet" type="text/css" href="css/component.css" />
-	<link rel="stylesheet" type="text/css" href="css/content.css" />
-	<script src="js/modernizr.custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/linkstyles.css" />
+
 </head>
   <body>
-    <div class="container">
-        <div class="col-sm-6 col-sm-offset-3">
+    <div class = 'nav'>
+        <logo><a href="/" ><h1>lyric's'mash</h1> </a></logo>
+        <div class="page-links">
+            <ul>
+                <li><a href="/profile">wordit</a></li>
+                <li><a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Login</a></li>
+            </ul></div>
+    </div>
 
-            <h1><span class="sign-in"></span> Login</h1>
-
-            <!-- show any messages that come back with authentication -->
-
-            <!-- LOGIN FORM -->
-            <form action="/" method="post">
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="text" class="form-control" name="email">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="password">
-                </div>
-
-                <button type="submit" class="btn btn-danger btn-lg">Login</button>
-            </form>
-
-            <hr>
-
-            <p>Need an account? <a href="/signup">Signup</a></p>
-            <p>Or go <a href="/">home</a>.</p>
-
-        </div>
-        <div class="jumbotron text-center">
-            <h1><span class="fa fa-lock"></span> SMASH</h1>
-            <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
-            <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
-        </div>
-
-
-
-
-        <section>
-				<div class="mockup-content">
-					<div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed">
-						<button type="button">Login</button>
-						<div class="morph-content">
-							<div>
-                                <form action="/login" method="post">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="text" class="form-control" name="email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control" name="password">
-                                    </div>
-
-                                    <button type="submit" class="btn btn-danger btn-lg">Login</button>
-                                </form>
-							</div>
-						</div>
-					</div><!-- morph-button -->
-					<strong class="joiner">or</strong>
-					<div class="morph-button morph-button-modal morph-button-modal-3 morph-button-fixed">
-						<button type="button">Signup</button>
-						<div class="morph-content">
-							<div>
-								<div class="content-style-form content-style-form-2">
-									<span class="icon icon-close">Close the dialog</span>
-									<h2>Sign Up</h2>
-									<form>
-										<p><label>Email</label><input type="text" /></p>
-										<p><label>Password</label><input type="password" /></p>
-										<p><label>Repeat Password</label><input type="password" /></p>
-										<p><button>Sign Up</button></p>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div><!-- morph-button -->
-				</div><!-- /form-mockup -->
-			</section>
+    <div class="container-main" >
+        <div class="grid">
+    	<div class="grid__item color-8">
+    			<div class="link link--manko ">
+    				lyric's'mash <span>Lyrical Randomness Generator </span> <span>Generate lyrics by typing in a few words that grab lines of songs from various different artists at random</span>
+    			<a class="link link--kukuri" href="#" data-letters="lyric's'mash">lyric's'mash</a>
+    		</div>
+    	</div>
+    </div>
 
     </div>
-    <canvas id = "canvas"></canvas>
+    <!-- <canvas id = "canvas"></canvas> -->
 </html>
-<script src="js/classie.js"></script>
-		<script src="js/uiMorphingButton_fixed.js"></script>
-		<script>
-			(function() {
-				var docElem = window.document.documentElement, didScroll, scrollPosition;
-
-				// trick to prevent scrolling when opening/closing button
-				function noScrollFn() {
-					window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
-				}
-
-				function noScroll() {
-					window.removeEventListener( 'scroll', scrollHandler );
-					window.addEventListener( 'scroll', noScrollFn );
-				}
-
-				function scrollFn() {
-					window.addEventListener( 'scroll', scrollHandler );
-				}
-
-				function canScroll() {
-					window.removeEventListener( 'scroll', noScrollFn );
-					scrollFn();
-				}
-
-				function scrollHandler() {
-					if( !didScroll ) {
-						didScroll = true;
-						setTimeout( function() { scrollPage(); }, 60 );
-					}
-				};
-
-				function scrollPage() {
-					scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
-					didScroll = false;
-				};
-
-				scrollFn();
-
-				[].slice.call( document.querySelectorAll( '.morph-button' ) ).forEach( function( bttn ) {
-					new UIMorphingButton( bttn, {
-						closeEl : '.icon-close',
-						onBeforeOpen : function() {
-							// don't allow to scroll
-							noScroll();
-						},
-						onAfterOpen : function() {
-							// can scroll again
-							canScroll();
-						},
-						onBeforeClose : function() {
-							// don't allow to scroll
-							noScroll();
-						},
-						onAfterClose : function() {
-							// can scroll again
-							canScroll();
-						}
-					} );
-				} );
-
-				// for demo purposes only
-				[].slice.call( document.querySelectorAll( 'form button' ) ).forEach( function( bttn ) {
-					bttn.addEventListener( 'click', function( ev ) { ev.preventDefault(); } );
-				} );
-			})();
-		</script>
   </body>
 </html>
