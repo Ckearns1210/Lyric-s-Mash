@@ -7,7 +7,7 @@ module.exports = function(app, passport) {
 app.get('/lyric/:search', function(req,res){
    console.log("im here");
 
-   request("http://api.musixmatch.com/ws/1.1/track.search?f_has_lyrics=1&page=1&page_size=15&q_lyrics="+ encodeURI(req.params.search) +"&s_track_rating=desc&apikey=5ee8f20d45e92ada39d80eb87c848687", function (error, response, body) {
+   request("http://api.musixmatch.com/ws/1.1/track.search?f_has_lyrics=1&page=1&page_size=1000&q_lyrics="+ encodeURI(req.params.search) +"&s_track_rating=desc&apikey=5ee8f20d45e92ada39d80eb87c848687", function (error, response, body) {
        trySendData(body, res);
    });
 });

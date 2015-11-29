@@ -5,6 +5,7 @@ $(function(){
         e.preventDefault();
         $('#show-lyrics').empty();
 
+
           $.each($('.inputter'), function () {
             var $currentItem = $(this);
             var searchTerm = $currentItem.val();
@@ -30,23 +31,22 @@ $(function(){
 
         var recursiveIterator = (function _rci(item) {
           if (item !== undefined ) {
-            $.get('/track/' + item.track.track_id, function (data) {
-                var trackBody = data.message.body.lyrics.lyrics_body;
-                var re = new RegExp ( '\\b' + searchTerm + '\\b', 'gi');
-                var foundLine = trackBody.split(/\n/g).find( function(el){
-                    return el.match(re);
-                });
-                if (foundLine === "******* This Lyrics is NOT for Commercial use *******") {
-                  foundLine = false;
-                }
-                return foundLine ? successfulItems(foundLine, item, searchTerm) : _rci(collection.pop());
+                $.get('/track/' + item.track.track_id, function (data) {
+                    var trackBody = data.message.body.lyrics.lyrics_body;
+                    var re = new RegExp ( '\\b' + searchTerm + '\\b', 'gi');
+                    var foundLine = trackBody.split(/\n/g).find( function(el){
+                        return el.match(re);
+                    });
+                    if (foundLine === "******* This Lyrics is NOT for Commercial use *******") {
+                      foundLine = false;
+                    }
+                    return foundLine ? successfulItems(foundLine, item, searchTerm) : _rci(collection.pop());
             }, 'json');
 
-        }
-      else {
-        alert('Could not find ' + searchTerm + ', please try another word!');
+            } else {
+                alert('Could not find ' + searchTerm + ', please try another word!');
 
-      }})(collection.pop());
+        }})(collection.pop());
 
     };
 });
@@ -66,8 +66,8 @@ var successfulItems = function(word, item, searchTerm){
   var $newSpanArtistInfo = $('<span class = lyrics-span-artist-info>');
   $newSpanArtistInfo.addClass(spotifyID);
   $newSpan.append($newSpanClearFix);
-  $newSpanClearFix.append($newSpanArtistInfo);
 
+  $newSpanClearFix.append($newSpanArtistInfo);
 
 
 
@@ -88,9 +88,20 @@ var successfulItems = function(word, item, searchTerm){
          };
 
          window.speechSynthesis.speak(msg);
+
+        //  console.log(speechSynthesis);
+         //
+        //  console.log( msg);
+
        });
+
     spotifyCall(spotifyID, searchTerm);
+
 };
+
+
+
+
 
 var spotifyCall = function(spotifyID, searchTerm) {
   $.get('/spotify/' + spotifyID, function(data) {
@@ -108,20 +119,18 @@ var renderSpotify = function(data, spotifyID) {
   var songName = data.name;
   var imageURL = data.album.images[1].url;
   var spotifyLink = data.external_urls.spotify;
-$(".lyrics-span-artist-info" + "." + spotifyID).text("Artists: " + artistsNames.toString() + " Song Name: " + songName);
+  var songDiv = $("<p class='song-data'>").text("Song Name: " + songName);
+  var artistDiv = $("<p class='artist-data'>").text("Artists: " + artistsNames.toString());
+$(".lyrics-span-artist-info" + "." + spotifyID).append(artistDiv).append(songDiv);
+
   //create a a href in a span and append to lyrics paragragh
         var $img = $('<img />',{
                     class: 'artist-image',
                      src: imageURL,
                    })
                     .appendTo($('.lyrics-span-clearfix' + "." + spotifyID));
-                    $('.lyrics-span-clearfix' + "." + spotifyID).addClass('has-image');
+                    // $('.lyrics-span-clearfix' + "." + spotifyID).addClass('has-image');
 
-  var $newLink = $("<a />", {
-    class : "spotify-link",
-    href : spotifyLink,
-    text: "spotify link"
-}).appendTo($('.lyrics-span-artist-info' + "." + spotifyID));
 
 var $playSpotifyP = $('<p />', {
     class: "spotify-play",
