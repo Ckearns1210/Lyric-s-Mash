@@ -117,7 +117,7 @@ var $img = $('<img />',{
   var $newLink = $("<a />", {
     class : "spotify-link",
     href : spotifyLink,
-    text: "spotify link"
+    text: "Check this song out on Spotify!"
 }).appendTo($('.lyrics-span-artist-info' + "." + spotifyID));
 };
 
