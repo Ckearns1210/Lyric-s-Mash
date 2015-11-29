@@ -1,18 +1,29 @@
 $(function(){
   $('#mash-button').hide();
+  $("#mash-button").click(function() {
+    responsiveVoice.speak(message.join());
+  })
 
     $("#search-button").on('click', function(e) {
+    responsiveVoice.cancel();
         e.preventDefault();
         $('#show-lyrics').empty();
 
           $.each($('.inputter'), function () {
             var $currentItem = $(this);
             var searchTerm = $currentItem.val();
-            // var searchTerm = presearchTerm.split(' ').join("+");
             $.get('/lyric/' + searchTerm, render.bind(undefined, searchTerm), 'json');
 
         });
     });
+
+$('.inputter').keypress(function(e) {
+  var key= e.which;
+  if (key === 13) {
+    $('#search-button').click();
+    return false;
+  }
+});
 
     var render = function (searchTerm, data, xhr){
       console.log(data);
@@ -51,6 +62,7 @@ $(function(){
     };
 });
 
+var message = [];
 
 var successfulItems = function(word, item, searchTerm){
 
@@ -67,33 +79,34 @@ var successfulItems = function(word, item, searchTerm){
   $newSpanArtistInfo.addClass(spotifyID);
   $newSpan.append($newSpanClearFix);
   $newSpanClearFix.append($newSpanArtistInfo);
+  message.push(word);
 
 
 
 
-    $("#mash-button").click(function() {
+      // var audio = new Audio('hotline_bling.mp3');
+      // audio.play();
+      //
+      //    var msg = new SpeechSynthesisUtterance();
+      //    var voices = window.speechSynthesis.getVoices();
+      //    msg.voice = voices[3]; // Note: some voices don't support altering params
+      //    msg.voiceURI = 'native';
+      //    msg.volume = 1; // 0 to 1
+      //    msg.rate = 1; // 0.1 to 10
+      //    msg.pitch = 1; //0 to 2
+      //    msg.text = word;
+      //    msg.lang = 'en-US';
+      //
+      //    msg.onend = function(e) {
+      //      console.log('Finished in ' + event.elapsedTime + ' seconds.');
+      //    };
+      //
+      //    window.speechSynthesis.speak(msg);
 
-      var audio = new Audio('hotline_bling.mp3');
-      audio.play();
-
-         var msg = new SpeechSynthesisUtterance();
-         var voices = window.speechSynthesis.getVoices();
-         msg.voice = voices[3]; // Note: some voices don't support altering params
-         msg.voiceURI = 'native';
-         msg.volume = 1; // 0 to 1
-         msg.rate = 1; // 0.1 to 10
-         msg.pitch = 1; //0 to 2
-         msg.text = word;
-         msg.lang = 'en-US';
-
-         msg.onend = function(e) {
-           console.log('Finished in ' + event.elapsedTime + ' seconds.');
-         };
-
-         window.speechSynthesis.speak(msg);
-        });
     spotifyCall(spotifyID, searchTerm);
 };
+
+
 
 var spotifyCall = function(spotifyID, searchTerm) {
   $.get('/spotify/' + spotifyID, function(data) {
