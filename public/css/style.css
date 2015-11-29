@@ -105,7 +105,7 @@ a:hover, a:focus {
 	 opacity: 0;
 	 cursor: default;
 	 pointer-events: none;
-	 right: -20%;
+	 right: -10%;
  }
 
 .lyrics-span .lyrics-span-clearfix {
@@ -291,10 +291,19 @@ button.btn.btn-danger.btn-lg {
     padding-left: 4%;
 }
 
+
 .lyrical {
     width: 60%;
+	margin-left: 20%;
 }
 
 #mash-button {
     margin-left: 25%;
 }
+
+.spotify-widget-container {
+    width: 100px;
+    display: block;
+    margin-top: 695px;
+    margin-left: -300px;
+	}

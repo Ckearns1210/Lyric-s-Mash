@@ -122,7 +122,26 @@ $(".lyrics-span-artist-info" + "." + spotifyID).text("Artists: " + artistsNames.
     href : spotifyLink,
     text: "spotify link"
 }).appendTo($('.lyrics-span-artist-info' + "." + spotifyID));
+
+var $playSpotifyP = $('<p />', {
+    class: "spotify-play",
+    text: "Play Song Now"
+}).appendTo($('.lyrics-span-artist-info' + "." + spotifyID));
+
+$playSpotifyP.on('click', function(e) {
+$('.spotify-widget-container').empty();
+  var $spotifyWidget = $('<iframe>', {
+    src: "https://embed.spotify.com/?uri=spotify:track:"  + spotifyID,
+    width: "300",
+    height: "80",
+    frameborder: "0",
+    allowtransparency: "true",
+    class: "spotify-widget"
+  }).appendTo($('.spotify-widget-container'));
+});
 };
+
+
 
 
 var shuffle = function(array) {
