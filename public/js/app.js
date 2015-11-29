@@ -91,7 +91,14 @@ var successfulItems = function(word, item, searchTerm){
 
 var spotifyCall = function(spotifyID, searchTerm) {
   $.get('/spotify/' + spotifyID, function(data) {
+    if (data != undefined) {
     renderSpotify(data, spotifyID);
+  }
+    else {
+        $.get('/spotify/' + spotifyID, function(data) {
+          render(spotify(data, spotifyID));
+        })
+    }
   }, 'json');
 }
 
@@ -118,6 +125,7 @@ var $img = $('<img />',{
     class : "spotify-link",
     href : spotifyLink,
     text: "Check this song out on Spotify!"
+
 }).appendTo($('.lyrics-span-artist-info' + "." + spotifyID));
 };
 
