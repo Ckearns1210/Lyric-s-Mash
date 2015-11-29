@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:200,500,700,800);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500italic,700,700italic,900,900italic);
 
 *, *:after, *:before { box-sizing: border-box; }
 .clearfix:before, .clearfix:after {display: table;  content: ''; }
@@ -9,11 +10,14 @@ body {
 	color: #404d5b;
 	font-weight: 500;
 	font-size: 1.05em;
-	font-family: 'Raleway', Arial, sans-serif;
+font-family: 'Roboto', sans-serif;
+	transition: background-color .25s ease-in-out;
+-moz-transition: background-color .25s ease-in-out;
+-webkit-transition: background-color .25s ease-in-out;
 }
 
 a {
-	color: #2fa0ec;
+	color: #fff;
 	text-decoration: none;
 	outline: none;
 }
@@ -34,10 +38,14 @@ a:hover, a:focus {
 }
 
 .content {
-	font-size: 150%;
-	padding: 1em 0;
+    font-size: 150%;
+    padding: 1em 0;
+    position: absolute;
+	left: 30px;
+	top: 50px;
+	width:30%;
+	min-width: 300px;
 }
-
 .content h2 {
 	margin: 0 0 2em;
 	opacity: 0.1;
@@ -64,7 +72,9 @@ logo {
 }
 
 .page-links {
-	float: right;
+    right: 10px;
+    top: 10px;
+    position: absolute;
 }
 
 ul {
@@ -82,7 +92,7 @@ li {
     float: left;
     padding: 5%;
     margin-left: 2%;
-
+	margin-top: -200px;
 }
 
 .user-form:first-child {
@@ -98,7 +108,7 @@ button.btn.btn-danger.btn-lg {
 /* Grid */
 .grid__item {
 	height: calc(100vh - 40px);
-	min-height: 460px;
+	min-height: 740px;
 	max-width: calc(100vw - 40px);
 	background: #DDD;
 	margin: 20px;
@@ -121,4 +131,34 @@ button.btn.btn-danger.btn-lg {
 	color: #777;
 }
 
-.color-8 { background: #DCECDD; }
+.color-8 {
+    background: #000000;
+}
+
+.word-data {
+    width: 20%;
+    float: left;
+}
+
+#holder {
+	margin-right: auto;
+	margin-left: auto;
+		opacity: 0;
+		transition: opacity .25s ease-in-out;
+	 	-moz-transition: opacity .25s ease-in-out;
+	 	-webkit-transition: opacity .25s ease-in-out;
+}
+
+#holder.visible {
+	opacity: 1;
+	transition: opacity .25s ease-in-out;
+ 	-moz-transition: opacity .25s ease-in-out;
+ 	-webkit-transition: opacity .25s ease-in-out;
+}
+
+#show-lyrics {
+    font-size: 12px;
+    text-align: left;
+    margin-left: 20%;
+    padding-left: 4%;
+}

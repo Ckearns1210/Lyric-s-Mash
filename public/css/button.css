@@ -9,7 +9,7 @@ bg-1 {
 	max-width: 250px;
 	display: block;
 	margin: 1em;
-	padding: 1em 2em;
+	padding: 6px 0px;
 	border: none;
 	background: none;
 	color: inherit;
@@ -95,7 +95,7 @@ bg-1 {
 	content: '';
 	position: absolute;
 	border-radius: inherit;
-	background: #7986cb;
+	background: #fff;
 	z-index: -1;
 }
 .button--nuka::before {
@@ -153,21 +153,20 @@ button.button.button--nuka.button--round-s.button--text-thick {
 button#search-button {
     text-align: center;
     margin: 0 auto;
+	margin-top: 20px;
+	float: left;
 }
 
 
 /* Nao */
-.input--nao {
-	overflow: hidden;
-	padding-top: 1em;
-}
+
 
 .input__field--nao {
-	padding: 0.5em 0em 0.25em;
+	padding: 1.5em 0em 0.25em;
 	width: 100%;
 	background: transparent;
-	color: #9da8b2;
-	font-size: 1.25em;
+	color: #fff;
+	font-size: 1.em;
 }
 
 .input__label--nao {

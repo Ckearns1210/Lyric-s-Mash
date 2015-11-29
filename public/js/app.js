@@ -1,7 +1,10 @@
 $(function(){
 
+
     $("#search-button").on('click', function(e) {
         e.preventDefault();
+        $('#show-lyrics').empty();
+
           $.each($('.inputter'), function () {
             var $currentItem = $(this);
             var searchTerm = $currentItem.val();
@@ -12,12 +15,14 @@ $(function(){
     });
 
     var render = function (searchTerm, data, xhr){
+      console.log(data);
         var _render = render.bind(searchTerm, data);
 
         // verify that message body exists
 
         var songList = data.message.body.track_list;
         console.log(songList);
+
 
         //shuffled songlist
         var collection = shuffle(songList);
@@ -34,7 +39,7 @@ $(function(){
                 if (foundLine === "******* This Lyrics is NOT for Commercial use *******") {
                   foundLine = false;
                 }
-                return foundLine ? successfulItems(foundLine, item) : _rci(collection.pop());
+                return foundLine ? successfulItems(foundLine, item, searchTerm) : _rci(collection.pop());
             }, 'json');
 
         }
@@ -46,10 +51,25 @@ $(function(){
     };
 });
 
-var successfulItems = function(word, item){
-    console.log(item);
 
-    $('#show-lyrics').append($('<p>').text(word));
+var successfulItems = function(word, item, searchTerm){
+
+  var spotifyID = item.track.track_spotify_id;
+
+  var $newSpan = $('<span class = lyrics-span>');
+  var $newP = $('<p>').text(word);
+  $newSpan.append($newP);
+  $('#show-lyrics').append($newSpan);
+  var $newSpanClearFix = $('<span class = lyrics-span-clearfix>');
+  $newSpanClearFix.addClass(spotifyID);
+  var $newSpanArtistInfo = $('<span class = lyrics-span-artist-info>');
+  $newSpanArtistInfo.addClass(spotifyID);
+  $newSpan.append($newSpanClearFix);
+  $newSpanClearFix.append($newSpanArtistInfo);
+
+
+
+
     $("#mash-button").click(function() {
 
          var msg = new SpeechSynthesisUtterance();
@@ -67,9 +87,40 @@ var successfulItems = function(word, item){
          };
 
          window.speechSynthesis.speak(msg);
-
        });
-       d3Visual(item);
+    spotifyCall(spotifyID, searchTerm);
+};
+
+var spotifyCall = function(spotifyID, searchTerm) {
+  $.get('/spotify/' + spotifyID, function(data) {
+    renderSpotify(data, spotifyID);
+  }, 'json');
+};
+
+var renderSpotify = function(data, spotifyID) {
+  console.log(data);
+  var artists = data.artists;
+  var artistsNames = [];
+  artists.forEach(function(el) {
+    artistsNames.push(el.name);
+});
+  var songName = data.name;
+  var imageURL = data.album.images[2].url;
+  var spotifyLink = data.external_urls.spotify;
+$(".lyrics-span-artist-info" + "." + spotifyID).text("Artists: " + artistsNames.toString() + " Song Name: " + songName);
+  //create a a href in a span and append to lyrics paragragh
+        var $img = $('<img />',{
+                    class: 'artist-image',
+                     src: imageURL,
+                   })
+                    .appendTo($('.lyrics-span-clearfix' + "." + spotifyID));
+                    $('.lyrics-span-clearfix' + "." + spotifyID).addClass('has-image');
+
+  var $newLink = $("<a />", {
+    class : "spotify-link",
+    href : spotifyLink,
+    text: "spotify link"
+}).appendTo($('.lyrics-span-artist-info' + "." + spotifyID));
 };
 
 

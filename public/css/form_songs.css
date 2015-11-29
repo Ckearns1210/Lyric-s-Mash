@@ -3,6 +3,7 @@
 	z-index: 1;
 	display: inline-block;
 	margin: 0em;
+
 	width: calc(100% - 2em);
 	vertical-align: top;
 }
@@ -16,7 +17,7 @@
 	border: none;
 	border-radius: 0;
 	background: #f0f0f0;
-	color: #aaa;
+	color: #fff;
 	font-weight: 400;
 	font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	-webkit-appearance: none; /* for box shadows to show on iOS */
@@ -31,7 +32,7 @@
 	float: right;
 	padding: 0 1em;
 	width: 40%;
-	color: #696969;
+	color: #fff;
 	font-weight: bold;
 	font-size: 70.25%;
 	-webkit-font-smoothing: antialiased;
@@ -46,9 +47,10 @@
 
 .input__label-content {
 	position: relative;
-	display: block;
-	padding: 1.6em 0;
-	width: 100%;
+    display: block;
+    padding: 46px 0;
+    width: 100%;
+    font-size: 13px;
 }
 
 .graphic {
@@ -69,8 +71,7 @@
 /* Nao */
 .input--nao {
 	overflow: hidden;
-
-
+	padding-top: 1em;
 }
 
 .input__field--nao {
@@ -78,7 +79,7 @@
 	width: 100%;
 	background: transparent;
 	color: #9da8b2;
-	font-size: 1.2em;
+	font-size: 1em;
 }
 
 .input__label--nao {
