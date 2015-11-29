@@ -1,5 +1,5 @@
 $(function(){
-
+  $('#mash-button').hide();
 
     $("#search-button").on('click', function(e) {
         e.preventDefault();
@@ -56,6 +56,7 @@ var successfulItems = function(word, item, searchTerm){
 
   var spotifyID = item.track.track_spotify_id;
 
+  $('#mash-button').show();
   var $newSpan = $('<span class = lyrics-span>');
   var $newP = $('<p>').text(word);
   $newSpan.append($newP);
@@ -105,7 +106,7 @@ var renderSpotify = function(data, spotifyID) {
     artistsNames.push(el.name);
 });
   var songName = data.name;
-  var imageURL = data.album.images[2].url;
+  var imageURL = data.album.images[1].url;
   var spotifyLink = data.external_urls.spotify;
 $(".lyrics-span-artist-info" + "." + spotifyID).text("Artists: " + artistsNames.toString() + " Song Name: " + songName);
   //create a a href in a span and append to lyrics paragragh

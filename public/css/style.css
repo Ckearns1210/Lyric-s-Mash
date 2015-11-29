@@ -60,24 +60,18 @@ a:hover, a:focus {
 
 
 .lyrics-span {
-	position: relative;
-	z-index: 999;
-	box-sizing: border-box;
-	margin-top: 0;
-	line-height: 1.8;
-	text-align: justify;
-	font: 1.65em;
-	padding: 1em;
-	/* min-height: 300px; */
-	margin: 0 auto;
-	font-weight: 300;
-	background: transparent;
-	cursor: pointer;
-	display: block;
-	/* text-align: center; */
-	font-size: 24px;
-	color: #fff;
-
+    position: relative;
+    z-index: 999;
+    box-sizing: border-box;
+    margin-top: 0;
+    text-align: justify;
+    margin: 0 auto;
+    font-weight: 300;
+    background: transparent;
+    cursor: pointer;
+    display: block;
+    font-size: 24px;
+    color: #fff;
 }
 
 .lyrics-span::after {
@@ -111,7 +105,7 @@ a:hover, a:focus {
 	 opacity: 0;
 	 cursor: default;
 	 pointer-events: none;
-	 right: 70%;
+	 right: -20%;
  }
 
 .lyrics-span .lyrics-span-clearfix {
@@ -171,10 +165,13 @@ a:hover, a:focus {
 }
 
 .lyrics-span-artist-info {
-	font-size: .68em;
-	line-height: 1.35;
-	padding: 1.31em 1.21em 1.21em 0;
-	color: #eee;
+    font-size: .68em;
+    line-height: 1.35;
+    padding-top: 10px;
+    color: #eee;
+    float: right;
+    display: block;
+    width: 47%;
 }
 
 .lyrics-span-artist-info a {
@@ -292,4 +289,12 @@ button.btn.btn-danger.btn-lg {
     text-align: left;
     margin-left: 20%;
     padding-left: 4%;
+}
+
+.lyrical {
+    width: 60%;
+}
+
+#mash-button {
+    margin-left: 25%;
 }
