@@ -293,3 +293,10 @@ button.btn.btn-danger.btn-lg {
     margin-left: 20%;
     padding-left: 4%;
 }
+
+.spotify-widget-container {
+    width: 100px;
+    display: block;
+    margin-top: 695px;
+    margin-left: -300px;
+	}

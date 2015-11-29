@@ -105,7 +105,7 @@ var renderSpotify = function(data, spotifyID) {
     artistsNames.push(el.name);
 });
   var songName = data.name;
-  var imageURL = data.album.images[2].url;
+  var imageURL = data.album.images[1].url;
   var spotifyLink = data.external_urls.spotify;
 $(".lyrics-span-artist-info" + "." + spotifyID).text("Artists: " + artistsNames.toString() + " Song Name: " + songName);
   //create a a href in a span and append to lyrics paragragh
@@ -121,7 +121,26 @@ $(".lyrics-span-artist-info" + "." + spotifyID).text("Artists: " + artistsNames.
     href : spotifyLink,
     text: "spotify link"
 }).appendTo($('.lyrics-span-artist-info' + "." + spotifyID));
+
+var $playSpotifyP = $('<p />', {
+    class: "spotify-play",
+    text: "Play Song Now"
+}).appendTo($('.lyrics-span-artist-info' + "." + spotifyID));
+
+$playSpotifyP.on('click', function(e) {
+$('.spotify-widget-container').empty();
+  var $spotifyWidget = $('<iframe>', {
+    src: "https://embed.spotify.com/?uri=spotify:track:"  + spotifyID,
+    width: "300",
+    height: "80",
+    frameborder: "0",
+    allowtransparency: "true",
+    class: "spotify-widget"
+  }).appendTo($('.spotify-widget-container'));
+});
 };
+
+
 
 
 var shuffle = function(array) {
