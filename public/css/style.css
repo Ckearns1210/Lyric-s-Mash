@@ -43,3 +43,102 @@ a:hover, a:focus {
 	padding: 5em 0 0 0;
 	font-size: 0.65em;
 }
+
+svg {
+  position: absolute;
+}
+
+.lyrics-span {
+	position: relative;
+	z-index: 999;
+	box-sizing: border-box;
+	margin-top: 0;
+	line-height: 1.8;
+	text-align: justify;
+	max-width: 1000px;
+	font: 1.65em;
+	padding: 1em;
+	min-height: 300px;
+	margin: 0 auto;
+	font-weight: 300;
+	background: #fff;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.lyrics--span::after {
+	content: '';
+	position: absolute;
+	width: 360px;
+	height: 20px;
+	bottom: 100%;
+	left: 50%;
+	pointer-events: none;
+}
+
+.lyrics-span-clearfix {
+	transition: .3s, .3s;
+	position: absolute;
+	z-index: 9999;
+	width: 360px;
+	left: 50%;
+	margin: 0 0 20px -180px;
+	bottom: 100%;
+	text-align: left;
+	font-size: .765em;
+	line-height: 1.4;
+	box-shadow: -5px -5px 15px rgba(48, 54, 61, .2);
+	background: #2a3035;
+	opacity: 0;
+	cursor: default;
+	pointer-events: none;
+}
+
+.lyrics-span-clearfix:before,
+.lyrics-span-clearfix:after {
+	content: '';
+	display: table;
+
+}
+
+.lyrics-span-clearfix img {
+	position: relative;
+	height: 170px;
+	display: block;
+	float: left;
+	margin-right: 1em;
+	border: 0;
+}
+
+.lyrics-span-artist-info {
+	font-size: .68em;
+	line-height: 1.35;
+	display: block;
+	padding: 1.31em 1.21em 1.21em 0;
+	color: #fff;
+}
+
+.lyrics-span-clearfix::after {
+	content: '';
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: transparent;
+	border-top-color: #2a3035;
+	border-width: 10px;
+	margin-left: -10px;
+
+}
+
+p {
+	background: #434d55;
+	color: #eee;
+}
+
+.lyrics-span-clearfix:after {
+	clear: both;
+}
