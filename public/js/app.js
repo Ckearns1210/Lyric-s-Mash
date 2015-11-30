@@ -44,7 +44,6 @@ $(function() {
 
     ///////////////////////////SEARCH BUTTON CLICK EVENT/////////////////////////////
 
-
     $("#search-button").on('click', function(e) {
         //clear global message variable used for speech above
         message = [];
@@ -60,11 +59,6 @@ $(function() {
         });
     });
 
-<<<<<<< HEAD
-    var render = function (searchTerm, data, xhr){
-      console.log(data)
-        var _render = render.bind(searchTerm, data);
-=======
     //adds enter capabilities to search-button click event
     $('.inputter').keypress(function(e) {
         var key = e.which;
@@ -73,7 +67,6 @@ $(function() {
             return false;
         }
     });
->>>>>>> dev2
 
     /////////////////////////RENDER//////////////////////////////////////
 
@@ -86,101 +79,6 @@ $(function() {
         var collection = shuffle(songList);
 
         var recursiveIterator = (function _rci(item) {
-<<<<<<< HEAD
-          if (item != undefined ) {
-            $.get('/track/' + item.track.track_id, function (data) {
-                var trackBody = data.message.body.lyrics.lyrics_body;
-                var re = new RegExp ( '\\b' + searchTerm + '\\b', 'gi');
-                var foundLine = trackBody.split(/\n/g).find( function(el){
-                    return el.match(re);
-                });
-                if (foundLine === "******* This Lyrics is NOT for Commercial use *******") {
-                  foundLine = false;
-                }
-                return foundLine ? successfulItems(foundLine, item, searchTerm) : _rci(collection.pop());
-            }, 'json');
-
-        }
-      else {
-        alert('Could not find ' + searchTerm + ', please try another word!');
-
-      }})(collection.pop());
-
-    };
-});
-
-
-var successfulItems = function(word, item, searchTerm){
-
-  var spotifyID = item.track.track_spotify_id;
-
-  var $newSpan = $('<span class = lyrics-span>')
-  var $newP = $('<p>').text(word);
-  $newSpan.append($newP);
-  $('#show-lyrics').append($newSpan);
-  var $newSpanClearFix = $('<span class = lyrics-span-clearfix>');
-  $newSpanClearFix.addClass(spotifyID);
-  var $newSpanArtistInfo = $('<span class = lyrics-span-artist-info>');
-  $newSpanArtistInfo.addClass(spotifyID);
-  $newSpan.append($newSpanClearFix);
-  $newSpanClearFix.append($newSpanArtistInfo);
-
-
-
-
-    $("#mash-button").click(function() {
-
-         var msg = new SpeechSynthesisUtterance();
-         var voices = window.speechSynthesis.getVoices();
-         msg.voice = voices[3]; // Note: some voices don't support altering params
-         msg.voiceURI = 'native';
-         msg.volume = 1; // 0 to 1
-         msg.rate = 1; // 0.1 to 10
-         msg.pitch = 1; //0 to 2
-         msg.text = word;
-         msg.lang = 'en-US';
-
-         msg.onend = function(e) {
-           console.log('Finished in ' + event.elapsedTime + ' seconds.');
-         };
-
-         window.speechSynthesis.speak(msg);
-       });
-    spotifyCall(spotifyID, searchTerm);
-};
-
-var spotifyCall = function(spotifyID, searchTerm) {
-  $.get('/spotify/' + spotifyID, function(data) {
-    renderSpotify(data, spotifyID);
-  }, 'json');
-}
-
-var renderSpotify = function(data, spotifyID) {
-  console.log(data)
-  var artists = data.artists
-  var artistsNames = [];
-  artists.forEach(function(el) {
-    artistsNames.push(el.name)
-  })
-  var songName = data.name;
-  var imageURL = data.album.images[2].url;
-  var spotifyLink = data.external_urls.spotify
-$(".lyrics-span-artist-info" + "." + spotifyID).text("Artists: " + artistsNames.toString() + " Song Name: " + songName);
-  //create a a href in a span and append to lyrics paragragh
-        var $img = $('<img />',{
-                    class: 'artist-image',
-                     src: imageURL,
-                   })
-                    .appendTo($('.lyrics-span-clearfix' + "." + spotifyID));
-                    $('.lyrics-span-clearfix' + "." + spotifyID).addClass('has-image');
-
-  var $newLink = $("<a />", {
-    class : "spotify-link",
-    href : spotifyLink,
-    text: "spotify link"
-}).appendTo($('.lyrics-span-artist-info' + "." + spotifyID));
-};
-=======
             //guard against terms that couldn't be found
             if (item !== undefined) {
                 //if passes guard, make second api call with track ID to get lyrics
@@ -245,7 +143,6 @@ $(".lyrics-span-artist-info" + "." + spotifyID).text("Artists: " + artistsNames.
             renderSpotify(data, spotifyID);
         }, 'json');
     };
->>>>>>> dev2
 
     var renderSpotify = function(data, spotifyID) {
         //parse spotify data
