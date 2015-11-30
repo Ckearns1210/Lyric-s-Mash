@@ -32,6 +32,7 @@ $(function(){
        var voiceRandomer = Math.floor((Math.random() * collectVoices.length) + 1);
        return collectVoices[voiceRandomer].name;
     };
+    console.log(message)
     responsiveVoice.speak(message.join(), randomVoices());
     var isPlayingRecursion = function() {
       if (responsiveVoice.isPlaying()) {
@@ -45,11 +46,14 @@ $(function(){
       }
     };
     isPlayingRecursion();
-    message = [];
+
 });
 
+
+
     $("#search-button").on('click', function(e) {
-    responsiveVoice.cancel();
+        message = [];
+        console.log(message)
         e.preventDefault();
         $('#show-lyrics').empty();
 
@@ -104,9 +108,9 @@ $('.inputter').keypress(function(e) {
         }})(collection.pop());
 
     };
-});
 
-var message = [];
+
+
 
 var successfulItems = function(word, item, searchTerm){
 
@@ -125,6 +129,7 @@ var successfulItems = function(word, item, searchTerm){
 
   $newSpanClearFix.append($newSpanArtistInfo);
   message.push(word);
+  console.log("MEssage is now " + message);
 
     spotifyCall(spotifyID, searchTerm);
 
@@ -178,7 +183,9 @@ $('.spotify-widget-container').empty();
     class: "spotify-widget"
   }).appendTo($('.spotify-widget-container'));
 });
+
 };
+
 
 
 
@@ -200,3 +207,5 @@ var shuffle = function(array) {
 
   return array;
 };
+});
+var message = [];
