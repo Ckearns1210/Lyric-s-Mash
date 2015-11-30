@@ -10,7 +10,7 @@ var express     = require('express'),
     cookieParser= require('cookie-parser'),
     session     = require('express-session');
     port        = process.env.PORT || 3000;
-    configDB    = require('./config/database.js')
+    configDB    = require('./config/database.js');
 
 //mongoose DB
 mongoose.connect(configDB.url);
@@ -39,7 +39,7 @@ require('./app/routes.js')(app, passport);
 
 //Port and Start
 app.listen(port);
-console.log('Cool runnings down through port 3000')
+console.log('⛷ ⛷ ⛷ ⛷ ⛷ Cool runnings down through port 3000 🏂 🏂 🏂 🏂 🏂');
 
 app.get('/', function (req, res) {
     res.send("I Work");

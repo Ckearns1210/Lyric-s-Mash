@@ -5,21 +5,30 @@
 .clearfix:after { clear: both; }
 
 body {
-	background: #f9f7f6;
+	background: white;
 	color: #404d5b;
 	font-weight: 500;
 	font-size: 1.05em;
-	font-family: 'Raleway', Arial, sans-serif;
+font-family: 'Roboto', sans-serif;
+	transition: background-color .25s ease-in-out;
+-moz-transition: background-color .25s ease-in-out;
+-webkit-transition: background-color .25s ease-in-out;
 }
 
 a {
-	color: #2fa0ec;
+	color: #fff;
 	text-decoration: none;
 	outline: none;
 }
 
 a:hover, a:focus {
 	color: #404d5b;
+}
+
+.container-main {
+	margin: 0 auto;
+	text-align: center;
+	overflow: hidden;
 }
 
 .container {
@@ -29,8 +38,13 @@ a:hover, a:focus {
 }
 
 .content {
-	font-size: 150%;
-	padding: 1em 0;
+    font-size: 150%;
+    padding: 1em 0;
+    position: absolute;
+	left: 30px;
+	top: 50px;
+	width:30%;
+	min-width: 300px;
 }
 
 .content h2 {
@@ -43,3 +57,255 @@ a:hover, a:focus {
 	padding: 5em 0 0 0;
 	font-size: 0.65em;
 }
+
+
+.lyrics-span {
+    position: relative;
+    z-index: 999;
+    box-sizing: border-box;
+    margin-top: 0;
+    text-align: justify;
+    margin: 0 auto;
+    font-weight: 300;
+    background: transparent;
+    cursor: pointer;
+    display: block;
+    font-size: 24px;
+    color: #fff;
+}
+
+.lyrics-span::after {
+	content: '';
+	position: absolute;
+	width: 360px;
+	height: 20px;
+	bottom: 100%;
+	left: 50%;
+	pointer-events: none;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.lyrics-span:hover .lyrics-span-clearfix::after {
+	pointer-events: auto;
+}
+
+ .lyrics-span-clearfix {
+	 transition: .3s, .3s;
+	 position: absolute;
+	 z-index: 9999;
+	 width: 360px;
+	 margin: 0 20px 0 0;
+	 bottom: 50%;
+	 text-align: left;
+	 font-size: .765em;
+	 line-height: 1.4;
+	 box-shadow: -5px -5px 15px rgba(48, 54, 61, .2);
+	 background: #2a3035;
+	 opacity: 0;
+	 cursor: default;
+	 pointer-events: none;
+ }
+
+.lyrics-span .lyrics-span-clearfix {
+	-webkit-transform: translate3d(0,-10px,0);
+	transform: translate3d(0,-10px,0);
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+}
+
+.lyrics-span:hover .lyrics-span-clearfix {
+	pointer-events: auto;
+	opacity: 1;
+	-webkit-transform: translate3d(0,0,0) rotate3d(0,0,0,0);
+	transform: translate3d(0,0,0) rotate3d(0,0,0,0);
+}
+
+.lyrics-span-clearfix::after {
+	content: '';
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: transparent;
+	border-top-color: #2a3035;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+.lyrics-span-clearfix img {
+	position: relative;
+	height: 170px;
+	display: block;
+	float: left;
+	margin-right: 1em;
+	border: 0;
+}
+
+
+
+.lyrics-span-clearfix::after {
+	content: '';
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: transparent;
+	border-top-color: #2a3035;
+	border-width: 10px;
+	margin-left: -10px;
+
+}
+
+.lyrics-span-artist-info {
+    font-size: .68em;
+    line-height: 1.35;
+    padding-top: 10px;
+    color: #eee;
+    float: right;
+    display: block;
+    width: 47%;
+	padding-right: 12px;
+}
+
+.lyrics-span-artist-info a {
+	font-weight: bold;
+}
+
+
+.lyrics-span-clearfix:after {
+	clear: both;
+}
+
+.nav {
+    overflow: hidden;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    display: table-row-group;
+}
+
+logo {
+	float: left;
+	margin-left: 30px;
+}
+
+.page-links {
+    right: 10px;
+    top: 10px;
+    position: absolute;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline-block;
+    padding: 0 30px 0 0;
+    line-height: 48px;
+}
+
+.user-form {
+    width: 48%;
+    float: left;
+    padding: 5%;
+    margin-left: 2%;
+	margin-top: -200px;
+}
+
+.user-form:first-child {
+    border-right: 1px solid #333;
+}
+
+button.btn.btn-danger.btn-lg {
+    float: right;
+    margin-right: 18px;
+}
+
+
+/* Grid */
+.grid__item {
+	height: calc(100vh - 40px);
+	min-height: 740px;
+	max-width: calc(100vw - 40px);
+	background: #DDD;
+	margin: 20px;
+	padding: 100px 0;
+	z-index: 1;
+	position: relative;
+	text-align: center;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-transform: translate3d(0,0,0); /* Solves Safari bug because of SVG clipping mask */
+}
+
+..grid__item p {
+    font-size: 19px;
+    font-weight: bold;
+    color: #fff;
+    text-align: left;
+    line-height: 1;
+}
+
+.color-8 {
+    background: #000000;
+}
+
+.word-data {
+    width: 20%;
+    float: left;
+}
+
+#holder {
+	margin-right: auto;
+	margin-left: auto;
+		opacity: 0;
+		transition: opacity .25s ease-in-out;
+	 	-moz-transition: opacity .25s ease-in-out;
+	 	-webkit-transition: opacity .25s ease-in-out;
+}
+
+#holder.visible {
+	opacity: 1;
+	transition: opacity .25s ease-in-out;
+ 	-moz-transition: opacity .25s ease-in-out;
+ 	-webkit-transition: opacity .25s ease-in-out;
+}
+
+#show-lyrics {
+    font-size: 12px;
+    text-align: left;
+    margin-left: 20%;
+    padding-left: 4%;
+}
+
+
+.lyrical {
+    width: 60%;
+	margin-left: 20%;
+	margin-top: -90px;
+}
+
+#mash-button {
+    margin-left: 25%;
+}
+
+.spotify-widget-container {
+
+bottom: -90px;
+display: block;
+position: absolute;
+left: 0px;
+	}
