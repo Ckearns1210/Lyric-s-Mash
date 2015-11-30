@@ -10,13 +10,10 @@ $(function() {
         //create audio placeholder variable
         var audio = '';
         //Pick random song
-        var randomMusic = function() {
+        (randomMusic = function() {
             var musicRandomizer = Math.floor((Math.random() * 8) + 1);
             audio = new Audio('../music/' + musicRandomizer + '.mp3')
-        };
-
-        //Call random music
-        randomMusic();
+        })();
         //set audio volume
         audio.volume = .3;
 
@@ -24,18 +21,7 @@ $(function() {
         var randomVoices = function() {
             var voices = responsiveVoice.getVoices();
             var collectVoices = [];
-            collectVoices.push(voices[0]);
-            collectVoices.push(voices[1]);
-            collectVoices.push(voices[2]);
-            collectVoices.push(voices[3]);
-            collectVoices.push(voices[4]);
-            collectVoices.push(voices[5]);
-            collectVoices.push(voices[7]);
-            collectVoices.push(voices[14]);
-            collectVoices.push(voices[20]);
-            collectVoices.push(voices[23]);
-            collectVoices.push(voices[60]);
-            collectVoices.push(voices[61]);
+            collectVoices.push(voices[0], voices[1], voices[2], voices[3], voices[4], voices[5], voices[7], voices[14], voices[20], voices[23], voices[60], voices[61]);
             var voiceRandomer = Math.floor((Math.random() * collectVoices.length) + 1);
             return collectVoices[voiceRandomer].name;
         };
@@ -43,7 +29,7 @@ $(function() {
         responsiveVoice.speak(message.join(), randomVoices());
 
         //If still speaking, play background, if not, pause.  setTimeout to avoid max stack calls
-        var isPlayingRecursion = function() {
+         (isPlayingRecursion = function() {
             if (responsiveVoice.isPlaying()) {
                 console.log('recursive running!')
                 audio.play();
@@ -52,9 +38,7 @@ $(function() {
                 console.log('hit pause')
                 audio.pause();
             }
-        };
-        //Call Recursive play function
-        isPlayingRecursion();
+        })();
         //end of play button click event
     });
 
