@@ -31,12 +31,9 @@ $(function() {
             collectVoices.push(voices[4]);
             collectVoices.push(voices[5]);
             collectVoices.push(voices[7]);
-            collectVoices.push(voices[11]);
             collectVoices.push(voices[14]);
-            collectVoices.push(voices[16]);
             collectVoices.push(voices[20]);
             collectVoices.push(voices[23]);
-            collectVoices.push(voices[27]);
             collectVoices.push(voices[60]);
             collectVoices.push(voices[61]);
             var voiceRandomer = Math.floor((Math.random() * collectVoices.length) + 1);
@@ -226,5 +223,5 @@ $(function() {
         return array;
     };
 });
-//GLOBAL MESSAGE ARRAY
+//GLOBAL MESSAGE ARRAY SORRY MOM
 var message = [];
