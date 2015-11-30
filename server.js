@@ -39,7 +39,7 @@ require('./app/routes.js')(app, passport);
 
 //Port and Start
 app.listen(port);
-console.log('Cool runnings down through port 3000')
+console.log('⛷ ⛷ ⛷ ⛷ ⛷ Cool runnings down through port 3000 🏂 🏂 🏂 🏂 🏂')
 
 app.get('/', function (req, res) {
     res.send("I Work");
