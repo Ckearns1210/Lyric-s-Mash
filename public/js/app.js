@@ -1,7 +1,13 @@
 $(function(){
   $('#mash-button').hide();
+  $("#mash-button").click(function() {
+    responsiveVoice.speak(message.join(), randomVoices());
+
+    console.log(randomVoices().length);
+});
 
     $("#search-button").on('click', function(e) {
+    responsiveVoice.cancel();
         e.preventDefault();
         $('#show-lyrics').empty();
 
@@ -9,11 +15,40 @@ $(function(){
           $.each($('.inputter'), function () {
             var $currentItem = $(this);
             var searchTerm = $currentItem.val();
-            // var searchTerm = presearchTerm.split(' ').join("+");
             $.get('/lyric/' + searchTerm, render.bind(undefined, searchTerm), 'json');
 
         });
     });
+
+var randomVoices = function(){
+    var voices = responsiveVoice.getVoices();
+    var collectVoices = [];
+    collectVoices.push(voices[0]);
+    collectVoices.push(voices[1]);
+    collectVoices.push(voices[2]);
+    collectVoices.push(voices[3]);
+    collectVoices.push(voices[4]);
+    collectVoices.push(voices[5]);
+    collectVoices.push(voices[7]);
+    collectVoices.push(voices[11]);
+    collectVoices.push(voices[14]);
+    collectVoices.push(voices[16]);
+    collectVoices.push(voices[20]);
+    collectVoices.push(voices[23]);
+    collectVoices.push(voices[27]);
+    collectVoices.push(voices[60]);
+    collectVoices.push(voices[61]);
+    var voiceRandomer = Math.floor((Math.random() * collectVoices.length) + 1);
+    return collectVoices[voiceRandomer].name;
+};
+
+$('.inputter').keypress(function(e) {
+  var key= e.which;
+  if (key === 13) {
+    $('#search-button').click();
+    return false;
+  }
+});
 
     var render = function (searchTerm, data, xhr){
       console.log(data);
@@ -51,6 +86,7 @@ $(function(){
     };
 });
 
+var message = [];
 
 var successfulItems = function(word, item, searchTerm){
 
@@ -68,39 +104,34 @@ var successfulItems = function(word, item, searchTerm){
   $newSpan.append($newSpanClearFix);
 
   $newSpanClearFix.append($newSpanArtistInfo);
+  message.push(word);
 
 
 
-    $("#mash-button").click(function() {
 
-         var msg = new SpeechSynthesisUtterance();
-         var voices = window.speechSynthesis.getVoices();
-         msg.voice = voices[3]; // Note: some voices don't support altering params
-         msg.voiceURI = 'native';
-         msg.volume = 1; // 0 to 1
-         msg.rate = 1; // 0.1 to 10
-         msg.pitch = 1; //0 to 2
-         msg.text = word;
-         msg.lang = 'en-US';
+      // var audio = new Audio('hotline_bling.mp3');
+      // audio.play();
+      //
+      //    var msg = new SpeechSynthesisUtterance();
+      //    var voices = window.speechSynthesis.getVoices();
+      //    msg.voice = voices[3]; // Note: some voices don't support altering params
+      //    msg.voiceURI = 'native';
+      //    msg.volume = 1; // 0 to 1
+      //    msg.rate = 1; // 0.1 to 10
+      //    msg.pitch = 1; //0 to 2
+      //    msg.text = word;
+      //    msg.lang = 'en-US';
+      //
+      //    msg.onend = function(e) {
+      //      console.log('Finished in ' + event.elapsedTime + ' seconds.');
+      //    };
+      //
+      //    window.speechSynthesis.speak(msg);
 
-         msg.onend = function(e) {
-           console.log('Finished in ' + event.elapsedTime + ' seconds.');
-         };
-
-         window.speechSynthesis.speak(msg);
-
-        //  console.log(speechSynthesis);
-         //
-        //  console.log( msg);
-
-       });
 
     spotifyCall(spotifyID, searchTerm);
 
 };
-
-
-
 
 
 var spotifyCall = function(spotifyID, searchTerm) {
@@ -124,12 +155,14 @@ var renderSpotify = function(data, spotifyID) {
 $(".lyrics-span-artist-info" + "." + spotifyID).append(artistDiv).append(songDiv);
 
   //create a a href in a span and append to lyrics paragragh
-        var $img = $('<img />',{
-                    class: 'artist-image',
-                     src: imageURL,
-                   })
-                    .appendTo($('.lyrics-span-clearfix' + "." + spotifyID));
-                    // $('.lyrics-span-clearfix' + "." + spotifyID).addClass('has-image');
+
+var $img = $('<img />',{
+            class: 'artist-image',
+             src: imageURL,
+           })
+            .appendTo($('.lyrics-span-clearfix' + "." + spotifyID));
+            $('.lyrics-span-clearfix' + "." + spotifyID).addClass('has-image');
+
 
 
 var $playSpotifyP = $('<p />', {
