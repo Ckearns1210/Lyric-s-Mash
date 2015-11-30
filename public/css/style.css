@@ -105,7 +105,6 @@ a:hover, a:focus {
 	 opacity: 0;
 	 cursor: default;
 	 pointer-events: none;
-	 right: -10%;
  }
 
 .lyrics-span .lyrics-span-clearfix {
@@ -172,6 +171,7 @@ a:hover, a:focus {
     float: right;
     display: block;
     width: 47%;
+	padding-right: 12px;
 }
 
 .lyrics-span-artist-info a {
@@ -295,6 +295,7 @@ button.btn.btn-danger.btn-lg {
 .lyrical {
     width: 60%;
 	margin-left: 20%;
+	margin-top: -90px;
 }
 
 #mash-button {
@@ -302,8 +303,9 @@ button.btn.btn-danger.btn-lg {
 }
 
 .spotify-widget-container {
-    width: 100px;
-    display: block;
-    margin-top: 695px;
-    margin-left: -300px;
+
+bottom: -90px;
+display: block;
+position: absolute;
+left: 0px;
 	}

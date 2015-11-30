@@ -1,13 +1,58 @@
 $(function(){
   $('#mash-button').hide();
   $("#mash-button").click(function() {
-    responsiveVoice.speak(message.join());
-  })
+    var audio = '';
+    var randomMusic = function () {
+      var musicRandomizer = Math.floor((Math.random() * 8) + 1);
+        audio = new Audio('../music/' + musicRandomizer + '.mp3')
+        console.log(audio);
+    };
+
+    randomMusic();
+
+    audio.volume = .3;
+    var randomVoices = function(){
+       var voices = responsiveVoice.getVoices();
+       var collectVoices = [];
+       collectVoices.push(voices[0]);
+       collectVoices.push(voices[1]);
+       collectVoices.push(voices[2]);
+       collectVoices.push(voices[3]);
+       collectVoices.push(voices[4]);
+       collectVoices.push(voices[5]);
+       collectVoices.push(voices[7]);
+       collectVoices.push(voices[11]);
+       collectVoices.push(voices[14]);
+       collectVoices.push(voices[16]);
+       collectVoices.push(voices[20]);
+       collectVoices.push(voices[23]);
+       collectVoices.push(voices[27]);
+       collectVoices.push(voices[60]);
+       collectVoices.push(voices[61]);
+       var voiceRandomer = Math.floor((Math.random() * collectVoices.length) + 1);
+       return collectVoices[voiceRandomer].name;
+    };
+    responsiveVoice.speak(message.join(), randomVoices());
+    var isPlayingRecursion = function() {
+      if (responsiveVoice.isPlaying()) {
+        console.log('recussion running playing!')
+        audio.play();
+        window.setTimeout(isPlayingRecursion, 500)
+      }
+      else {
+        console.log('hit pause else')
+        audio.pause();
+      }
+    };
+    isPlayingRecursion();
+    message = [];
+});
 
     $("#search-button").on('click', function(e) {
     responsiveVoice.cancel();
         e.preventDefault();
         $('#show-lyrics').empty();
+
 
           $.each($('.inputter'), function () {
             var $currentItem = $(this);
@@ -41,23 +86,22 @@ $('.inputter').keypress(function(e) {
 
         var recursiveIterator = (function _rci(item) {
           if (item !== undefined ) {
-            $.get('/track/' + item.track.track_id, function (data) {
-                var trackBody = data.message.body.lyrics.lyrics_body;
-                var re = new RegExp ( '\\b' + searchTerm + '\\b', 'gi');
-                var foundLine = trackBody.split(/\n/g).find( function(el){
-                    return el.match(re);
-                });
-                if (foundLine === "******* This Lyrics is NOT for Commercial use *******") {
-                  foundLine = false;
-                }
-                return foundLine ? successfulItems(foundLine, item, searchTerm) : _rci(collection.pop());
+                $.get('/track/' + item.track.track_id, function (data) {
+                    var trackBody = data.message.body.lyrics.lyrics_body;
+                    var re = new RegExp ( '\\b' + searchTerm + '\\b', 'gi');
+                    var foundLine = trackBody.split(/\n/g).find( function(el){
+                        return el.match(re);
+                    });
+                    if (foundLine === "******* This Lyrics is NOT for Commercial use *******") {
+                      foundLine = false;
+                    }
+                    return foundLine ? successfulItems(foundLine, item, searchTerm) : _rci(collection.pop());
             }, 'json');
 
-        }
-      else {
-        alert('Could not find ' + searchTerm + ', please try another word!');
+            } else {
+                alert('Could not find ' + searchTerm + ', please try another word!');
 
-      }})(collection.pop());
+        }})(collection.pop());
 
     };
 });
@@ -78,34 +122,13 @@ var successfulItems = function(word, item, searchTerm){
   var $newSpanArtistInfo = $('<span class = lyrics-span-artist-info>');
   $newSpanArtistInfo.addClass(spotifyID);
   $newSpan.append($newSpanClearFix);
+
   $newSpanClearFix.append($newSpanArtistInfo);
   message.push(word);
 
-
-
-
-      // var audio = new Audio('hotline_bling.mp3');
-      // audio.play();
-      //
-      //    var msg = new SpeechSynthesisUtterance();
-      //    var voices = window.speechSynthesis.getVoices();
-      //    msg.voice = voices[3]; // Note: some voices don't support altering params
-      //    msg.voiceURI = 'native';
-      //    msg.volume = 1; // 0 to 1
-      //    msg.rate = 1; // 0.1 to 10
-      //    msg.pitch = 1; //0 to 2
-      //    msg.text = word;
-      //    msg.lang = 'en-US';
-      //
-      //    msg.onend = function(e) {
-      //      console.log('Finished in ' + event.elapsedTime + ' seconds.');
-      //    };
-      //
-      //    window.speechSynthesis.speak(msg);
-
     spotifyCall(spotifyID, searchTerm);
-};
 
+};
 
 
 var spotifyCall = function(spotifyID, searchTerm) {
@@ -124,8 +147,12 @@ var renderSpotify = function(data, spotifyID) {
   var songName = data.name;
   var imageURL = data.album.images[1].url;
   var spotifyLink = data.external_urls.spotify;
-$(".lyrics-span-artist-info" + "." + spotifyID).text("Artists: " + artistsNames.toString() + " Song Name: " + songName);
+  var songDiv = $("<p class='song-data'>").text("Song Name: " + songName);
+  var artistDiv = $("<p class='artist-data'>").text("Artists: " + artistsNames.toString());
+$(".lyrics-span-artist-info" + "." + spotifyID).append(artistDiv).append(songDiv);
+
   //create a a href in a span and append to lyrics paragragh
+
 var $img = $('<img />',{
             class: 'artist-image',
              src: imageURL,
@@ -133,11 +160,7 @@ var $img = $('<img />',{
             .appendTo($('.lyrics-span-clearfix' + "." + spotifyID));
             $('.lyrics-span-clearfix' + "." + spotifyID).addClass('has-image');
 
-  var $newLink = $("<a />", {
-    class : "spotify-link",
-    href : spotifyLink,
-    text: "spotify link"
-}).appendTo($('.lyrics-span-artist-info' + "." + spotifyID));
+
 
 var $playSpotifyP = $('<p />', {
     class: "spotify-play",
