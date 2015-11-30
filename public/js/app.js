@@ -34,6 +34,7 @@ $(function(){
     };
     console.log(message)
     responsiveVoice.speak(message.join(), randomVoices());
+    
     var isPlayingRecursion = function() {
       if (responsiveVoice.isPlaying()) {
         console.log('recussion running playing!')
