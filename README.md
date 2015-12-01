@@ -1,68 +1,68 @@
-Lyric-s-Mash App
+#Lyric-s-Mash App
 
-Lyrical Randomness Generator
+##Lyrical Randomness Generator
 
-Authors:
-https://github.com/tenhands
-https://github.com/jcjohnny
+#Authors:
+(https://github.com/tenhands)
+(https://github.com/jcjohnny)
 
-Instructions
+##Instructions
 
 To Use:
 
-Clone the repo.
+1.Clone the repo.
 
-Install the packages: npm install
+2. Install the packages: `npm install`
 
-Launch: node server.js
+3. Launch: `node server.js`
 
-Visit in your browser:Localhost:3000
+4. Visit in your browser: [Localhost:3000](http://Localhost:3000)
 
-Obtain and add your own api key from musixmatch.com (only takes a couple seconds! free, no emails or requests.)
+5. Obtain and add your own api key from musixmatch.com (only takes a couple seconds! free, no emails or requests.)
 
-Technologies, Dependencies, Packages Used
+##Technologies, Dependencies, Packages Used
 
-Technologies
+###Technologies
 
-musixmatch API
-spotify API
+-musixmatch API
+-spotify API
 
-body-parser
-ejs
-express
-express-session
-method-override
-mongoose
-morgan
-bcrypt-nodejs
-connect-flash
-cookie-parser
-passport
-passport-local
-request
-mongodb
+-body-parser
+-ejs
+-express
+-express-session
+-method-override
+-mongoose
+-morgan
+-bcrypt-nodejs
+-connect-flash
+-cookie-parser
+-passport
+-passport-local
+-request
+-mongodb
 
-Packages & Libraries
+###Packages & Libraries
 
-JQuery
-responsiveVoice.js
-
-
+-JQuery
+-responsiveVoice.js
 
 
-Contributing
 
-With your help Resu-me will continue to improve and evolve. You can contribute in several ways:
 
-Bug Reports:
+##Contributing
+
+You can contribute in several ways:
+
+##Bug Reports:
 
 Who likes bugs? Provide a detailed report of any bugs you encounter and open an issue on our repo's issues section
 
-Documentation:
+##Documentation:
 
 Like fixing typos or adding to documentation? We encourage you to fork our project project, make your changes, and submit a pull request. Extra sets of eyes and fresh perspectives are wanted and welcome.
 
-Fixes:
+##Fixes:
 
 See a problem that you have a solution for? You're more than welcome to make a fix and submit it as a pull request.
 
