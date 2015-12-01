@@ -3,8 +3,9 @@
 ## Lyrical Randomness Generator
 
 # Authors:
-(https://github.com/tenhands)
-(https://github.com/jcjohnny)
+[ckearns1210](https://github.com/ckearns1210)
+[jcjohnny](https://github.com/jcjohnny)
+[tenhands](https://github.com/tenhands)
 
 ## Instructions
 
