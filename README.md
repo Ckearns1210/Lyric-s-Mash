@@ -26,7 +26,6 @@ To Use:
 
 - musixmatch API
 - spotify API
-
 - body-parser
 - ejs
 - express
