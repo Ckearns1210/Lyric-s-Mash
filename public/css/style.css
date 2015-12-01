@@ -232,7 +232,7 @@ button.btn.btn-danger.btn-lg {
 
 
 /* Grid */
-.grid__item {
+.gridItem {
 	height: calc(100vh - 40px);
 	min-height: 740px;
 	max-width: calc(100vw - 40px);
@@ -251,7 +251,7 @@ button.btn.btn-danger.btn-lg {
 	-webkit-transform: translate3d(0,0,0); /* Solves Safari bug because of SVG clipping mask */
 }
 
-..grid__item p {
+..gridItem p {
     font-size: 19px;
     font-weight: bold;
     color: #fff;
