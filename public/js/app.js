@@ -21,7 +21,7 @@ $(function() {
         var randomVoices = function() {
             var voices = responsiveVoice.getVoices();
             var collectVoices = [];
-            collectVoices.push(voices[0], voices[1], voices[2], voices[3], voices[4], voices[5], voices[7], voices[14], voices[20], voices[23], voices[60], voices[61]);
+            collectVoices.push(voices[0], voices[1], voices[2], voices[5], voices[7], voices[14], voices[20], voices[23], voices[60], voices[61]);
             var voiceRandomer = Math.floor((Math.random() * collectVoices.length) + 1);
             return collectVoices[voiceRandomer].name;
         };
