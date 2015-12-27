@@ -3,8 +3,11 @@
 ## Lyrical Randomness Generator
 
 # Authors:
-(https://github.com/tenhands)
-(https://github.com/jcjohnny)
+[ckearns1210](https://github.com/ckearns1210)
+
+[jcjohnny](https://github.com/jcjohnny)
+
+[tenhands](https://github.com/tenhands)
 
 ## Instructions
 
@@ -70,3 +73,5 @@ See a problem that you have a solution for? You're more than welcome to make a f
 Code released for entertainment and educational purposes.
 
 Please contact authors for additional usage.
+
+![alt tag](https://github.com/Ckearns1210/Lyric-s-Mash/blob/master/lyricsmash.png)
