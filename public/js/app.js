@@ -41,11 +41,13 @@ $(function() {
             }
         };
         //end of play button click event
+
         responsiveVoice.speak(message.join(), randomVoices());
+        // added so isPlayingRecursion has a higher chance of playing a song.
         setTimeout( function(){
-        // Do something after 1 second
-        isPlayingRecursion();
-    }  , 300 );
+            // start the function after .4 seconds
+            isPlayingRecursion();
+        }  , 400 );
     });
 
     ///////////////////////////SEARCH BUTTON CLICK EVENT/////////////////////////////
@@ -146,6 +148,11 @@ $(function() {
     //call spotify api with ID
     var spotifyCall = function(spotifyID, searchTerm) {
         $.get('/spotify/' + spotifyID, function(data) {
+            // added if statement to see if this works to force grab spotify data. Does not work.
+            if (data.name == undefined) {
+                spotifyCall(spotifyID, searchTerm)
+            }
+            ///
             renderSpotify(data, spotifyID);
         }, 'json');
     };
