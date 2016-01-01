@@ -16,6 +16,8 @@ $(function() {
         })();
         //set audio volume
         audio.volume = .3;
+        audio.pause();
+        audio.currentTime = 0;
 
         //Random Voice Generator
         var randomVoices = function() {
@@ -26,10 +28,9 @@ $(function() {
             return collectVoices[voiceRandomer].name;
         };
         //Once we have random song and random voice, speak it
-        responsiveVoice.speak(message.join(), randomVoices());
 
         //If still speaking, play background, if not, pause.  setTimeout to avoid max stack calls
-         (isPlayingRecursion = function() {
+         isPlayingRecursion = function() {
             if (responsiveVoice.isPlaying()) {
                 console.log('recursive running!')
                 audio.play();
@@ -38,8 +39,13 @@ $(function() {
                 console.log('hit pause')
                 audio.pause();
             }
-        })();
+        };
         //end of play button click event
+        responsiveVoice.speak(message.join(), randomVoices());
+        setTimeout( function(){
+        // Do something after 1 second
+        isPlayingRecursion();
+    }  , 300 );
     });
 
     ///////////////////////////SEARCH BUTTON CLICK EVENT/////////////////////////////

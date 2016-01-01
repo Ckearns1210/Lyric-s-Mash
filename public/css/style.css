@@ -139,6 +139,7 @@ a:hover, a:focus {
 .lyrics-span-clearfix img {
 	position: relative;
 	height: 170px;
+	width: 170px;
 	display: block;
 	float: left;
 	margin-right: 1em;
