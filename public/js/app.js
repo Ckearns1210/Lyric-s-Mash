@@ -16,20 +16,21 @@ $(function() {
         })();
         //set audio volume
         audio.volume = .3;
+        audio.pause();
+        audio.currentTime = 0;
 
         //Random Voice Generator
         var randomVoices = function() {
             var voices = responsiveVoice.getVoices();
             var collectVoices = [];
-            collectVoices.push(voices[0], voices[1], voices[2], voices[3], voices[4], voices[5], voices[7], voices[14], voices[20], voices[23], voices[60], voices[61]);
+            collectVoices.push(voices[0], voices[1], voices[2], voices[5], voices[7], voices[14], voices[20], voices[23], voices[60], voices[61]);
             var voiceRandomer = Math.floor((Math.random() * collectVoices.length) + 1);
             return collectVoices[voiceRandomer].name;
         };
         //Once we have random song and random voice, speak it
-        responsiveVoice.speak(message.join(), randomVoices());
 
         //If still speaking, play background, if not, pause.  setTimeout to avoid max stack calls
-         (isPlayingRecursion = function() {
+         isPlayingRecursion = function() {
             if (responsiveVoice.isPlaying()) {
                 console.log('recursive running!')
                 audio.play();
@@ -38,8 +39,15 @@ $(function() {
                 console.log('hit pause')
                 audio.pause();
             }
-        })();
+        };
         //end of play button click event
+
+        responsiveVoice.speak(message.join(), randomVoices());
+        // added so isPlayingRecursion has a higher chance of playing a song.
+        setTimeout( function(){
+            // start the function after .4 seconds
+            isPlayingRecursion();
+        }  , 400 );
     });
 
     ///////////////////////////SEARCH BUTTON CLICK EVENT/////////////////////////////
@@ -140,6 +148,11 @@ $(function() {
     //call spotify api with ID
     var spotifyCall = function(spotifyID, searchTerm) {
         $.get('/spotify/' + spotifyID, function(data) {
+            // added if statement to see if this works to force grab spotify data. Does not work.
+            if (data.name == undefined) {
+                spotifyCall(spotifyID, searchTerm)
+            }
+            ///
             renderSpotify(data, spotifyID);
         }, 'json');
     };

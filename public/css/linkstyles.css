@@ -17,11 +17,11 @@ font-family: 'Roboto', sans-serif;
     transition: color 0.5s;
     font-weight: 900;
     overflow: hidden;
-    line-height: 0.75;
+
     font-size: 132px;
     position: absolute;
     left: 1px;
-    top: 18px;
+    top: 2px;
     letter-spacing: .9px;
 }
 
