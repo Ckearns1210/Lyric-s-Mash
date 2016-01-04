@@ -3,7 +3,7 @@ var express     = require('express'),
     app         = express(),
     router      = express.Router(),
     request     = require('request'),
-    mongoose    = require('mongoose'),
+    // mongoose    = require('mongoose'),
     bodyParser  = require('body-parser'),
     passport    = require('passport'),
     flash       = require('connect-flash'),
@@ -13,7 +13,7 @@ var express     = require('express'),
     configDB    = require('./config/database.js');
 
 //mongoose DB
-mongoose.connect(configDB.url);
+// mongoose.connect(configDB.url);
 
 require('./config/passport')(passport);
 
