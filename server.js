@@ -13,7 +13,7 @@ var express     = require('express'),
     configDB    = require('./config/database.js');
 
 //mongoose DB
-mongoose.connect(configDB.url);
+// mongoose.connect(configDB.url);
 
 require('./config/passport')(passport);
 
