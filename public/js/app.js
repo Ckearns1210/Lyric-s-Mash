@@ -14,10 +14,10 @@ $(function() {
             var musicRandomizer = Math.floor((Math.random() * 8) + 1);
             audio = new Audio('../music/' + musicRandomizer + '.mp3')
         })();
-        //set audio volume
-        audio.volume = .3;
         audio.pause();
         audio.currentTime = 0;
+        //set audio volume
+        audio.volume = .3;
 
         //Random Voice Generator
         var randomVoices = function() {
