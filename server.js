@@ -1,6 +1,7 @@
 var express     = require('express'),
     morgan      = require('morgan'),
     app         = express(),
+    favicon     = require('serve-favicon'),
     router      = express.Router(),
     request     = require('request'),
     // mongoose    = require('mongoose'),
@@ -10,13 +11,12 @@ var express     = require('express'),
     cookieParser= require('cookie-parser'),
     session     = require('express-session'),
     port        = process.env.PORT || 3000,
-    configDB    = require('./config/database.js'),
-    favicon = require('serve-favicon');
+    configDB    = require('./config/database.js');
 
 
+    app.use(favicon(__dirname + '/public/favicon.ico'));
 //mongoose DB
 // mongoose.connect(configDB.url);
-app.use(favicon(__dirname + '/public/favicon.ico'));
 
 require('./config/passport')(passport);
 
