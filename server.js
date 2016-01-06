@@ -8,14 +8,18 @@ var express     = require('express'),
     passport    = require('passport'),
     flash       = require('connect-flash'),
     cookieParser= require('cookie-parser'),
-    session     = require('express-session');
-    port        = process.env.PORT || 3000;
-    configDB    = require('./config/database.js');
+    session     = require('express-session'),
+    port        = process.env.PORT || 3000,
+    configDB    = require('./config/database.js'),
+    favicon = require('serve-favicon');
+
 
 //mongoose DB
 // mongoose.connect(configDB.url);
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 require('./config/passport')(passport);
+
 
 //EXPRESS SETUP
 app.use(morgan('dev'));
