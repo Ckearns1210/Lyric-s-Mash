@@ -1,4 +1,3 @@
-// 
 // var mongoose = require('mongoose');
 //
 // var EntrySchema = new mongoose.Schema({
